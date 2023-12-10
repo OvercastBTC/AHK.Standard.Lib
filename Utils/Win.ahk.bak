@@ -4,7 +4,11 @@
 
 class Win extends Initializable {
 
-	winTitle        := "A"
+	static winTitle        := 'A'
+	static excludeTitle    := ""
+	static winText         := ""
+	static excludeText     := ""
+	winTitle        := 'A'
 	winText         := ""
 	excludeTitle    := ""
 	excludeText     := ""
@@ -20,7 +24,6 @@ class Win extends Initializable {
 	startupWintitle := ""
 	position        := ""
 	isAlwaysOnTop   := 2 ; sentinel value, because Initializable requires a field to not be unset
-
 	/**
 	* @param {Object} paramsObject Key value pairs for properties of the class you want to set. Essentially, this is an initializer
 	* @extends {Initializable}
@@ -41,37 +44,22 @@ class Win extends Initializable {
 		this.Initialize(paramsObject)
 	}
 
-	class Testing {
-		static NoExePath() {
-			throw TargetError("Specify a file path", -1)
-		}
+	static SetExplorerWintitle() => this.winTitle := this.exePath " ahk_exe explorer.exe"
 
-		static WrongType_toClose() {
-			throw TypeError(
-				"Win.toClose has to either be an array or a string",
-				-1,
-				this.toClose " : " Type(this.toClose)
-			)
-		}
-	}
-
-	SetExplorerWintitle() => this.winTitle := this.exePath " ahk_exe explorer.exe"
-
-	Close() {
-		try {
-			PostMessage("0x0010",,,, this.winTitle,, this.excludeTitle)
-		}catch Any {
+	static Close() {
+		try PostMessage("0x0010",,,, this.winTitle,, this.excludeTitle)
+		catch Any {
 			return false
 		}
 		return true
 	}
 
-	CloseAll() {
+	static CloseAll() {
 		while this.Close() {
 		}
 	}
 
-	Activate() {
+	static Activate() {
 		try {
 			WinActivate(this.winTitle,, this.excludeTitle)
 			WinWaitActive(this.winTitle,, this.actTimeout, this.excludeTitle)
@@ -88,7 +76,7 @@ class Win extends Initializable {
 	* If this concerns you, consider having less windows
 	* @returns {Boolean} False if there were less than 2 windows that matched (there could be zero); True if the operation completed successfully
 	*/
-	ActivateAnother() {
+	static ActivateAnother() {
 		windows := WinGetList(this.winTitle,, this.excludeTitle)
 		if (windows.Length < 2) {
 			return false
@@ -109,25 +97,24 @@ class Win extends Initializable {
 		return true
 	}
 
-	MinMax() {
-		if !WinExist(this.winTitle,, this.excludeTitle) {
-			return false
-		}
+	static MinMax() {
+		; ; if !WinExist(this.winTitle,, this.excludeTitle)
+		; if !WinExist(Win.winTitle,, Win.excludeTitle)
+		; 	return false
 
 		if WinActive(this.winTitle,, this.excludeTitle) {
-			if !this.ActivateAnother()
+			if !(Win.ActivateAnother()){
 				WinMinimize(this.winTitle, this.winText, this.excludeTitle, this.excludeText)
-		}
-		else {
+			}
+		} else {
 			this.Activate()
 		}
 		return true
 	}
 
-	Run() {
-		if WinExist(this.winTitle,, this.excludeTitle){
+	Static Run() {
+		if WinExist(this.winTitle,, this.excludeTitle)
 			return false
-		}
 		if !this.exePath {
 			Win.Testing.NoExePath()
 		}
@@ -143,20 +130,17 @@ class Win extends Initializable {
 		return true
 	}
 
-	CloseOnceExists() {
+	static CloseOnceExists() {
 		stopWaitingAt := A_TickCount + this.extTimeout * 1000
-		if Type(this.toClose) = "Array"{
+		if Type(this.toClose) = "Array"
 			SetTimer(foTryCloseArray, 20)
-		}
-		else if Type(this.toClose) = "String"{
+		else if Type(this.toClose) = "String"
 			SetTimer(foTryClose, 20)
-		}
-		else if !this.toClose{
+		else if !this.toClose
 			Win.Testing.WrongType_toClose()
-		}
-		else{
+		else
 			Win.Testing.WrongType_toClose()
-		}
+
 		foTryCloseArray() {
 			for key, value in this.toClose {
 				if WinExist(value) {
@@ -179,7 +163,7 @@ class Win extends Initializable {
 		}
 	}
 
-	RunAct() {
+	Static RunAct() {
 		this.Run()
 		if this.startupWintitle {
 			temp := this.winTitle
@@ -198,30 +182,30 @@ class Win extends Initializable {
 		return this
 	}
 
-	RunAct_Folders() {
+	Static RunAct_Folders() {
 		this.SetExplorerWintitle()
-		if !this.runOpt {
+		if !(this.runOpt) {
 			this.runOpt := Explorer.runOpt
 		}
-		if this.isAlwaysOnTop = 2 {
+		if (this.isAlwaysOnTop = 2) {
 			this.isAlwaysOnTop := Explorer.isAlwaysOnTop
 		}
-		if !this.position {
+		if !(this.position) {
 			this.position := Explorer.position
 		}
 		this.RunAct()
 		return this
 	}
 
-	App() {
-		if this.MinMax() {
+	static App(*) {
+		if (this.MinMax()) {
 			return this
 		}
 		this.RunAct()
 		return this
 	}
 
-	App_Folders() {
+	static App_Folders() {
 		this.SetExplorerWintitle()
 		if !this.runOpt {
 			this.runOpt := Explorer.runOpt
@@ -236,14 +220,14 @@ class Win extends Initializable {
 		return this
 	}
 
-	ActiveRegex() {
+	ActiveRegex(winTitle := "A", winText?, excludeTitle?, excludeText?) {
 		SetTitleMatchMode("RegEx")
 		return WinActive(this.winTitle, this.winText, this.excludeTitle, this.excludeText)
 	}
 
 	static ActiveRegex(winTitle := "A", winText?, excludeTitle?, excludeText?) {
 		SetTitleMatchMode("RegEx")
-		return WinActive(winTitle, winText?, excludeTitle?, excludeText?)
+		return WinActive(this.winTitle, this.winText, this.excludeTitle, this.excludeText)
 	}
 
 	/**
@@ -252,7 +236,7 @@ class Win extends Initializable {
 	* @param winTitles *Array/Map*
 	* @returns {Integer}
 	*/
-	AreActive() {
+	static AreActive() {
 		i := 0
 		for key, value in this.winTitles {
 			if Type(this.winTitles) = "Map" {
@@ -264,5 +248,19 @@ class Win extends Initializable {
 			}
 		}
 		return i
+	}
+
+	class Testing {
+		static NoExePath() {
+			throw TargetError("Specify a file path", -1)
+		}
+
+		static WrongType_toClose() {
+			throw TypeError(
+				"Win.toClose has to either be an array or a string",
+				-1,
+				this.toClose " : " Type(this.toClose)
+			)
+		}
 	}
 }

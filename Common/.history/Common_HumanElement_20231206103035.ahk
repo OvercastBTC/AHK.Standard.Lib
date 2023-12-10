@@ -83,16 +83,16 @@ clip_it()
 Sleep(100)
 txt:="
 (
-^b[- Design -]^b
+^b[-Design-]^b
 Single feed, to 13.8 kV switchgear; additional 13.8 kV swgr direct tie. Stepped down to 4160 and 2400 as needed
 
-^b[- Notes -]^b
+^b[-Notes-]^b
 - Arc flash event 2/2019 in ER20.
 - Main xfmr's oil was filtered in 2022 - tested-filtered-retested. DGA retest noted - No history - due to filtering.
 - Arc-flash: 2019
 - Swgr Replcmnt Proj: Started 2022
 
-^b[- Special Note -]^b (AJB - 04/2023) 
+^b[-Special Note-]^b (AJB - 04/2023) 
 The site was unable to validate the following statement included in a previous RR:
 - The K2 DC drive was found to have an undersized breaker and was reportedly followed-up on by the plant immediately.
 
@@ -172,32 +172,9 @@ Load Xfr: M
 Load Bank: A
 Batts: rplc. 5yrs
 )"
-A_Clipboard := txt
+A_Clipboard:= txt
 Sleep(100)
 Send('^v')
-OnMessage(WM_PASTE := 0x0302, highlight)
-highlight(*){
-   Infos('highlight`n')
-   ; ControlGetFocus('A')
-   ; if WinActive('ahk_exe WINWORD.exe') {
-   ;    text := ControlGetText(WinActive('A'))
-   ; } else {
-   ;    text := ControlGetText(ControlGetFocus('A'))
-   ; }
-   ; RegExMatch(text, 'i)^b[([A-z].*)]^b', &match)
-   RegExMatch(txt, 'i)^b[([A-z].*)]^b', &match)
-   if (match.count > 0) {
-      for each, value in match {
-         splitMatch := StrSplit(value, '^b ^i ^u ^b^i ^b^u ^i^u ^b^i^u')
-         for each, value in splitMatch {
-            Infos('[' A_index '] ' 'value: ' value)
-         }
-         ; RegExReplace(value, )
-      }
-   }
-}
-
-
 ; clip_it(1)
 ; Send("^v")
 ; Sleep(100)

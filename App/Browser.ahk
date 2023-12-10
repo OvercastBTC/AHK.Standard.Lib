@@ -59,7 +59,7 @@ Class Edge {
 		excludeTitle: this.excludeTitle
 	})
 	static RunLink(link) {
-		Run(link)
+		Run(this.path ' ' link)
 		WinWait(this.winTitle)
 		WinActivate(this.winTitle)
 	}

@@ -21,10 +21,12 @@ class Hotstringer {
 	}
 
 	static Paste() {
-		if this.DynamicHotstrings.Has(this.ih.Input)
+		if this.DynamicHotstrings.Has(this.ih.Input){
 			output := this.DynamicHotstrings[this.ih.Input].Call()
-		else if this.StaticHotstrings.Has(this.ih.Input)
+		}
+		else if this.StaticHotstrings.Has(this.ih.Input){
 			output := this.StaticHotstrings[this.ih.Input]
+		}
 		else {
 			Info('no key: "' this.ih.Input '"')
 			return

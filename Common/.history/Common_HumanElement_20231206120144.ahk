@@ -172,7 +172,7 @@ Load Xfr: M
 Load Bank: A
 Batts: rplc. 5yrs
 )"
-A_Clipboard := txt
+A_Clipboard:= txt
 Sleep(100)
 Send('^v')
 OnMessage(WM_PASTE := 0x0302, highlight)
@@ -185,7 +185,7 @@ highlight(*){
    ;    text := ControlGetText(ControlGetFocus('A'))
    ; }
    ; RegExMatch(text, 'i)^b[([A-z].*)]^b', &match)
-   RegExMatch(txt, 'i)^b[([A-z].*)]^b', &match)
+   RegExMatch(A_Clipboard, 'i)^b[([A-z].*)]^b', &match)
    if (match.count > 0) {
       for each, value in match {
          splitMatch := StrSplit(value, '^b ^i ^u ^b^i ^b^u ^i^u ^b^i^u')
@@ -196,7 +196,6 @@ highlight(*){
       }
    }
 }
-
 
 ; clip_it(1)
 ; Send("^v")

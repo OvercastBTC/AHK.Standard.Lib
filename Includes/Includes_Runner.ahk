@@ -6,7 +6,6 @@
 #Include <App\Davinci>
 #Include <Extensions\String>
 #Include <Utils\ClipSend>
-#Include <Extensions\String>
 #Include <Utils\Win>
 #Include <Paths>
 #Include <Utils\Unicode>
@@ -17,10 +16,13 @@
 #Include <Misc\Meditate>
 #Include <Misc\CountLibraries>
 #Include <App\Gimp>
-#Include <App\Shows>
+; #Include <App\Shows>
 #Include <Misc\Calculator>
 #Include <App\Explorer>
 #Include <App\Browser>
+#Include <App\Main>
+; ---------------------------------------------------------------------------
+#Include <Scr\Hotstrings>
 ; ---------------------------------------------------------------------------
 #Include <Scr\GeneralKeyChorder>
 #Include <Scr\ExpenseReportKeyChorder>

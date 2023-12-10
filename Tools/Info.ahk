@@ -13,12 +13,12 @@ class Infos {
 	__New(text, autoCloseTimeout := 0) {
 		this.autoCloseTimeout := autoCloseTimeout
 		this.text := text
-		this._CreateGui()
-		this.hwnd := this.gInfo.hwnd
 		if !this._GetAvailableSpace() {
 			this._StopDueToNoSpace()
 			return
 		}
+		this._CreateGui()
+		this.hwnd := this.gInfo.hwnd
 		this._SetupHotkeysAndEvents()
 		this._SetupAutoclose()
 		this._Show()
@@ -103,7 +103,16 @@ class Infos {
 
 	_CreateGui() {
 		this.gInfo  := Gui("AlwaysOnTop -Caption +ToolWindow").DarkMode().MakeFontNicer(Infos.fontSize).NeverFocusWindow()
-		this.gcText := this.gInfo.AddText(, this._FormatText())
+		; MsgBox()
+		maxHotKey := A_Index
+		if (maxHotKey = 0) {
+			this.gcText := this.gInfo.AddText(, 'Press {Esc}|{F1} to Clear`n`n' this._FormatText())
+		} else if (maxHotKey <= 12) {
+			this.gcText := this.gInfo.AddText(,'[F' maxHotKey '] ' this._FormatText())
+			; maxHotKey++
+		} else if (maxHotKey > 12) {
+			this.gcText := this.gInfo.AddText(, this._FormatText())
+		}
 	}
 
 	_FormatText() {
@@ -155,8 +164,9 @@ class Infos {
 			Infos.spots[spaceIndex] := this
 			break
 		}
-		if !IsSet(spaceIndex)
+		if !IsSet(spaceIndex){
 			return false
+		}
 		this.spaceIndex := spaceIndex
 		return true
 	}
@@ -169,8 +179,9 @@ class Infos {
 		HotIfWinExist("ahk_id " this.gInfo.Hwnd)
 		Hotkey("Escape", this.bfDestroy, "On")
 		Hotkey("^Escape", Infos.foDestroyAll, "On")
-		if this.spaceIndex <= Infos.maxNumberedHotkeys
-			Hotkey("F" this.spaceIndex, this.bfDestroy, "On")
+		if this.spaceIndex <= Infos.maxNumberedHotkeys {
+			Hotkey('F' this.spaceIndex , this.bfDestroy, "On")
+		}
 		this.gcText.OnEvent("Click", this.bfDestroy)
 		this.gInfo.OnEvent("Close", this.bfDestroy)
 	}

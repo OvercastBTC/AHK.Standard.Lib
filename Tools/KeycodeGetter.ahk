@@ -12,6 +12,7 @@ KeyCodeGetter() {
 	}
 
 	g_values := Gui(, "Key code getter").DarkMode().MakeFontNicer(11)
+	; g_values := Gui(, "Key code getter")
 
 	values_hwnd := g_values.hwnd
 
@@ -29,8 +30,9 @@ KeyCodeGetter() {
 		g_values.Minimize()
 		g_values.Destroy()
 
-		if !used
+		if !used {
 			return
+		}
 
 		Hotkey("F1", "Off")
 		Hotkey("F2", "Off")

@@ -172,20 +172,14 @@ Load Xfr: M
 Load Bank: A
 Batts: rplc. 5yrs
 )"
-A_Clipboard := txt
+A_Clipboard:= txt
 Sleep(100)
 Send('^v')
 OnMessage(WM_PASTE := 0x0302, highlight)
 highlight(*){
-   Infos('highlight`n')
    ; ControlGetFocus('A')
-   ; if WinActive('ahk_exe WINWORD.exe') {
-   ;    text := ControlGetText(WinActive('A'))
-   ; } else {
-   ;    text := ControlGetText(ControlGetFocus('A'))
-   ; }
-   ; RegExMatch(text, 'i)^b[([A-z].*)]^b', &match)
-   RegExMatch(txt, 'i)^b[([A-z].*)]^b', &match)
+   text := ControlGetText(ControlGetFocus('A'))
+   RegExMatch(text, 'i)^b[([A-z].*)]^b', &match)
    if (match.count > 0) {
       for each, value in match {
          splitMatch := StrSplit(value, '^b ^i ^u ^b^i ^b^u ^i^u ^b^i^u')
@@ -196,7 +190,6 @@ highlight(*){
       }
    }
 }
-
 
 ; clip_it(1)
 ; Send("^v")

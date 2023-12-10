@@ -1,5 +1,5 @@
-﻿#Requires AutoHotkey v2
-#Include <Directives\__AE.v2>
+﻿; #Requires AutoHotkey v2
+; #Include <Directives\__AE.v2>
 ; --------------------------------------------------------------------------------
 
 ; --------------------------------------------------------------------------------
@@ -105,7 +105,7 @@
 		Send('+{Tab 3}')
 
 	}
-	:*X:meal::Send('Business Travel - Meal -' A_Space)
+	:*X:meal::Send('Business Travel - Meal - ')
 		
 	:*:car::
 	{

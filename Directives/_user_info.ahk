@@ -12,6 +12,19 @@
 		'manager title', manager_title := '',
 		'manager email', manager_email := '',
 	)
+	static info_arr := Array(
+		your_name := 'blank',
+		your_initials := '',
+		your_title := '',
+		work_email := '@fmglobal.com',
+		personal_email := '',
+		employee_number := '',
+		office_phone := '',
+		personal_address := '',
+		manager_name := '',
+		manager_title := '',
+		manager_email := '',
+	)
 	static office_map := Map(
 		'office', office := 'FM Global Office: ',
 	)

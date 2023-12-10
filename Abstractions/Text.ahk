@@ -1,5 +1,5 @@
-#Include <Directives\__AE.v2>
-#Requires AutoHotkey v2+
+; #Include <Directives\__AE.v2>
+; #Requires AutoHotkey v2+
 ; OnError(LogError)
 ; i := Integer("cause_error")
 
@@ -35,8 +35,8 @@ AppendFile(whichFile, text) => FileAppend(text, whichFile, "UTF-8-RAW")
 * @param whichFile *String* The path to the file to read
 * @returns {String}
 */
-ReadFile(whichFile) => FileRead(whichFile, 'UTF-8-RAW')
-; ReadFile(whichFile) => FileRead(whichFile, 'UTF-8')
+; ReadFile(whichFile) => FileRead(whichFile, 'UTF-8-RAW')
+ReadFile(whichFile?) => FileRead(whichFile?, 'UTF-8')
 
 /**
 * Switch the contents of two files.

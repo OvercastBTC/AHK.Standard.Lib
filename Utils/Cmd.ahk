@@ -1,4 +1,4 @@
-;No dependencies
+;! No dependencies
 
 class Cmd {
 

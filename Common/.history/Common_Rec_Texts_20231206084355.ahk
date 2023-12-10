@@ -1,380 +1,31 @@
-﻿Class RecLibs {
-
-	RQA := Map(
-		'fair-good to good', '
-		(
-			B&M risk is fair-good to good.
-
-			^b^uElectrical Integrity:^b^u
-			- Electrical inspection, testing, and maintenance (ITM) has not been performed in a long time, if every; the site expects it hasn't been done since installation (1990s, early 2000s)
-			- The as-built electrical single-line diagrams are considerably out of date.
-			- The site did not have, nor could find, the 2017 arc-flash hazard analysis. There are action items that still need to be completed.
-
-			^b^uMechanical Integrity:^b^u
-			- Meets or exceeds original equipment manufacturer (OEM) and/or FM Globals standards
-
-			^b^uManagement of Change (MOC):^b^u
-			There is a fair-good MOC program in place; however, the key deficiency is a lack of a cross-functional, or interdepartmental, review team. The Facilities Maintenance is handed over a "finished product" without any turnover, from Facilities Engineering.
-			The following could have been completed/performed during the required outage on the low voltage (LV) switchgear:
-			- The three (to five) year offline electrical inspection, testing, and maintenance (ITM)
-			- The electrical system studies
-			- Updating the as-built electrical single-line diagrams
-
-			^b^uResiliency:^b^u
-			Most of the systems at this facility are N+1 throughout, and critical electronic business systems are mirrored in Las Vegas, Nevada, and Austin, Texas data centers.
-			- The data center for Mega Jackpot is backed up to the Las Vegas, Nevada data center
-
-			Management, operations, and maintenance personnel, readily received all industry best practices, recommendations, and suggestions. Once an interdepartmental communication bridge is built, they will be excellent partners in resiliency.
-		)'
-	)
-
-	static understanding_the_risk := [
-		
-		"electrical 1° exposure - 1", "
-		(
-		From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
-		
-		A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production.
-		
-		Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
-		
-		As the world's largest soda ash mine and manufacturing plant, this facility is a very valuable asset for Genesis Alkali Holdings.
-		
-		From the fire and natural hazards (F&NH) perspective, ignitable liquids at the ELDM plant remain one of the largest exposures here. Their ability to spread over a large area and their high heat of combustion make them difficult to extinguish, which result in large fires with considerable smoke and water damage. Improving the storage of ignitable liquids at the ELDM plant, as outlined in this report, would help reduce the likelihood of a severe ignitable liquid fire.
-		
-		From the boiler and machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure - specifically the medium voltage switchgear batteries. The battery testing recommendation was completed and the issues were identified and corrected. The next step is to improve the asset management by monitoring and controlling the temperature to as close to 77°F as practical, and have a remote alarm to a constantly attended location. 
-		
-		A robust asset integrity strategy coupled with thorough documentation, is necessary for trending, predicting, outage planning, and/or supporting an effective asset management program.
-		
-		Management and maintenance personnel have been working diligently to improve the asset integrity programs, and should be commended for their ongoing efforts in this area. Any gaps in maintenance routines are identified and reviewed for implementation.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
-		)",
-		"electrical 1° exposure - 2", "
-		(
-			International Game Technology (IGT) continues to be a global leader in gaming machines, specializing in design, manufacturing and marketing of electronic gaming equipment and network systems. This location at Prototype Drive is its primary manufacturing location and also houses servers that monitor IGT equipment at various locations, as well as the Mega Jackpot games. As the heart of IGT, all business operations must be sustained and maintained at its highest level.
-
-			FM Global believes that most losses are preventable. By identifying the inherent hazard of this type of occupancy and presenting engineering-driven, loss-prevention solutions, FM Global offers its best advice to protect this site's property and business, along with those of its customers.
-
-			From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
-
-			A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production; and by addressing critical recommendations outlined in the last coordination power system study. Ensuring support systems remain reliable is critical to supporting the value and profitability this facility represents.
-
-			Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
-
-			In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
-
-		)"
-	]
-	static map_understanding_the_risk := Map(
-		
-		"electrical 1° exposure - itm", "
-		(
-		From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
-		
-		A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production.
-		
-		Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
-		
-		As the world's largest soda ash mine and manufacturing plant, this facility is a very valuable asset for Genesis Alkali Holdings.
-		
-		From the fire and natural hazards (F&NH) perspective, ignitable liquids at the ELDM plant remain one of the largest exposures here. Their ability to spread over a large area and their high heat of combustion make them difficult to extinguish, which result in large fires with considerable smoke and water damage. Improving the storage of ignitable liquids at the ELDM plant, as outlined in this report, would help reduce the likelihood of a severe ignitable liquid fire.
-		
-		From the boiler and machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure - specifically the medium voltage switchgear batteries. The battery testing recommendation was completed and the issues were identified and corrected. The next step is to improve the asset management by monitoring and controlling the temperature to as close to 77°F as practical, and have a remote alarm to a constantly attended location. 
-		
-		A robust asset integrity strategy coupled with thorough documentation, is necessary for trending, predicting, outage planning, and/or supporting an effective asset management program.
-		
-		Management and maintenance personnel have been working diligently to improve the asset integrity programs, and should be commended for their ongoing efforts in this area. Any gaps in maintenance routines are identified and reviewed for implementation.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
-		)",
-		
-	)
-
-	weekly_valve_inspection := Map(
-		':*:wvit::', 'Conduct weekly, documented, fire protection valve inspections.',
-		':*:wvirfm::', 'Weekly visual inspections of all fire protection control valves will help ensure that the sprinkler system will be operational in the event of a fire. To assist you with the implementation of weekly valve inspections, FM Global offers the free, online, training course Inspecting Fire Protection Valves at https://fmglobaltraining.skillport.com. Records of these inspections should be maintained on file.',
-		':*:wvirafm::', 'Weekly visual inspections of all fire protection control valves will help ensure that the sprinkler system will be operational in the event of a fire. To assist you with the implementation of weekly valve inspections, AFM offers the free, online, training course Inspecting Fire Protection Valves at https://affiliatedfmtraining.skillport.com. Records of these inspections should be maintained on file.',
-
-	)
-	weekly_fire_pump_inspection := Map(
-		':*:weeklypumpt::', 'Conduct weekly documented fire protection pump tests via pressure drop.',
-		':*:weeklypumpr::', "Automatic starting should be tested by simulating a drop in system pressure at the fire pump control panel. This is done by releasing pressure in the line leading to the controller's pressure sensor.{Enter}At each test, checks should be made of the operation of the priming devices, the temperature and tightness of the glands, the readings of the suction and discharge gauges, and the condition of the suction supply. Check actual start and stop pressures against pressure switch settings every time the fire pump unit is started."
-	)
-	Class HumanElement {
-		static electrical := Map(
-			'design', '
-			(
-				[-Design-]
-				Single feed, to 13.8 kV switchgear; additional 13.8 kV swgr direct tie. Stepped down to 4160 and 2400 as needed
-			)',
-		
-			'notes', '
-			(
-				[-Notes-]
-				- Arc flash event 2/2019 in ER20.
-				- Main xfmr's oil was filtered in 2022 - tested-filtered-retested. DGA retest noted - No history - due to filtering.
-				- Arc-flash: 2019
-				- Swgr Replcmnt Proj: Started 2022
-			)',
-		
-			'sNote', '
-			(
-				[-Special Note-] (AJB - 04/2023)
-				The site was unable to validate the following statement included in a previous RR:
-				The K2 DC drive was found to have an undersized breaker and was reportedly followed-up on by the plant immediately.
-			)',
-		
-			'xfmrs5+', '
-			(
-				[-Xfmrs (>5MVA)-]
-				[Online]
-				Vis: D
-				IR: A
-				DGA/O: A
-				[Offline]
-				Testing: 3 yr
-				Last 2022
-				Prior: No
-				[5-4:Tbl 2]
-				Last:
-				Prev:
-			)',
-
-			'xfmrs5-','
-			(   
-				[-Xfmrs (<5MVA)-] (who owns)
-				[Online]
-				Vis: D
-				IR: A
-				DGA/O: A
-				[Offline]
-				Testing: 3 yr
-				[5-20: Table 6]
-				Last: 2022
-				Prev: No History
-			)',
-			
-			'mvswgr', '
-			(
-				[-MV Swgr-]
-				[Online]
-				Vis: W
-				IR: A
-				PD: No
-				C/C/D/T: No
-				[Offline]
-				C/I/E: A
-				[Bkr Testing]
-				Tbl 1a: 3yr
-				Tbl 1b: 3yr
-				Relay Testing: 3yr
-				[Tbl 1a]
-				Last: 2022
-				Prev: 2019
-			)',
-		
-			'batts', '
-			(
-				[-Batts-]
-				Date Code: 5/2021
-				C/D/T: No
-				Cool: No
-				[Online]
-				IR: No
-				Vis: M
-				W/T: M
-				Capacitance (Internal Ohmic): No
-				[Offline]
-				Capacity: No
-				[Rmt Mon]
-				Temp: No
-				Low Voltage: No
-			)',
-
-			'lvswgr', '
-			(
-				[-LV Swgr-]
-				[Online]
-				Vis: W
-				IR: A
-				C/D/T: Y
-				Clean: Ok
-				[Offline]
-				C/I/E: A
-				[5-20:Tbl 1]
-				Last: 2022
-				Prev: 2019
-			)',
-		
-			'edg', '
-			(
-				[-EDG-] (quarry portable crusher)
-				ITM: S/A, A
-				No Loads: W
-				Load Xfr: M
-				Load Bank: A
-				Batts: rplc. 5yrs
-			)',
-		)
-	}
-	; --------------------------------------------------------------------------------
-	Class LV_Electrical {
-		; --------------------------------------------------------------------------------
-		electrical_studies := Map(
-
-			'title', 'Update the five year electrical system studies.',
-			'reccomendation','
-			(
-				Perform the fault current and protection coordination studies per FM Global Property Loss Prevention Data Sheet 5-20, ^iElectrical Testing^i.
-
-				As an alternative, an arc-flash hazard analysis (or arc flash study) meets the intent of the recommendation. Please see the technical detail section for additional information.
-
-				^iNote: There is no impact to production as these studies are performed while online.^i
-			)',
-
-			'hazard', 'Circuit breakers are critical safety devices. Failure of a circuit breaker to trip will allow the electrical fault to persist and damage downstream equipment, jeopardize personnel safety, and cause electrical system instability. Electrical system studies will ensure the electrical system is appropriately aligned to interrupt the fault.',
-
-			'tech detail', '
-			(
-				^b^uStudies and Alternative Names:^b^u
-				- Short circuit/fault current
-				- protection coordination/selective tripping
-				- arc-flash hazard analysis/arc-flash study
-
-				^b^uPrimary Studies:^b^u
-				^bArc-Flash:^b
-				- The final product is based on information obtained from the fault current and coordination studies.
-				- The final product also generates a system diagram (single-line) similar to the as-built electrical single-line diagram. It is common to use the system diagram to review and update the as-built single line diagram, and is usually a service provided by the performing vendor.
-				^bSelective Tripping:^b
-				- The selective tripping, or coordination study, determines the extent of over-current protective device coordination within an electrical system.
-				- The intent is when a fault occurs anywhere in the system, the current interruption device closest to the fault will actuate and isolate the fault.
-				^bFault Current:^b
-				- The fault current study determines the ability of each component within an electrical system to withstand and/or interrupt the system and fault currents.
-
-				^bGeneral Guidance:^b
-				- An electrical vendor is the best resource for the overall accomplishment of this recommendation. Should their guidance differ from this recommendation, please reach out to FM Global prior to implementation.
-				- The standard industry periodicity is once every five years. However, an effective management of change (MOC) program can capture any changes made, and thereby identify any needed modifications required, to the protection device(s) of the electrical infrastructure.
-
-				^b^uAdditional Secondary Study:^b^u
-				^bLoad Balancing:^b
-				- Load-balancing studies ensure loads are balanced across all three phases. This prevents damage, or additional wear, on particularly susceptible components such as motors and electronics (PLCs/circuit cards).
-				- Another factor to consider: unbalanced loads can affect the site power factor and increase electricity costs.
-				- This study is normally performed during initial construction and commissioning of the electrical infrastructure; as needed, it is also performed when changes occur.
-				^iNote: This study is an industry best practice, and not required to complete this recommendation, but is highly recommended, and can be completed at the same time.^i
-			)'
-		)
-		; --------------------------------------------------------------------------------
-		MOC := Map(
-
-		'title', 'Improve the existing management of change (MOC) program.',
-		'reccomendation', '
-		(
-			Expand the existing management of change (MOC) process per FM Global Property Loss Prevention Data Sheets 9-0, ^iAsset Integrity^i; 7-43, ^iProcess Safety^i; and 10-8, ^iOperators^i.
-
-			^bIdentified Deficiencies:^b
-			- The current informal MOC process depends on the existing expertise and experience of site management and personnel
-			- No formalized/standardized process for a cross functional team (e.g., cross departmental) review exists
-			- No formal closeout policy and procedure(s) for obtaining closeout inspections and documentation prior to project completion
-			^iNote: A formalized process establishing the scope of work does exist, but does not include a formalized closeout process/procedure/checklist.^i
-		)',
-
-		'hazard', 'MOC is a structured approach to managing the hazards inherent in processes by applying good design, engineering, and operating practices. A full evaluation for any changes in production, utility and support systems as well as procedural changes, hazard evaluations, etc., associated with those changes, should be evaluated as early as the design stage. Operational hazards, if not properly managed, can result in significant business interruption in the form of property damage and loss of production.',
-
-		'technical', '
-		(
-			^bKey Deficiency:^b
-			A recent project required the low voltage switchgear to be de-energized for circuit installation/re-configuration. During this time, with an effective management of change (MOC) process, the need to perform inspection, testing, and maintenance (ITM) on the low voltage switchgear would have been accomplished.
-
-			^bGeneral Guidance:^b
-			An effective MOC program and policy is a living document, subject to many changes throughout its lifetime. It is also highly complex and versatile, and extensively intertwined throughout all aspects of business operations. As business operations change, it is essential that these changes be carefully reviewed, and any potential impacts/hazards are identified.
-
-			^iNote 1: You know your business, and how the MOC process can be best applied to your unique set of circumstances. Customize and personalize the process and language to site specific conditions.^i
-
-			^b^iThe following sections include general/generic examples, and are to be used for reference only.^b^i
-
-			^bMOC Evaluation Triggers:^b
-			- Servicing (maintenance) changes/increases
-			- Equipment installations/upgrades
-			- Increases or changes to production demands
-
-			^bMOC Example Questions:^b
-			- How are equipment/process changes going to affect equipment operating procedures ?
-			- What impact does/should this change have on inspection, testing, and maintenance (ITM) schedules (e.g., increases, decreases in periodicity, or change of scope)?
-			- How does equipment/process changes impact current training requirements?
-			- Do the electrical single line diagrams require updating (locally/site wide)?
-			- Do the electrical system studies require updating (locally/site wide)?
-			- Have all departments evaluated this (these) change(s) for impact?
-			- Is redundancy required for the process/equipment?
-
-			^bAdditional Guidance:^b
-			- An extensive document or process, customized to local conditions, should include a checklist/sign-off sheet of questions, and a formal review and approval process.
-			- The process should also include interdepartmental (cross-functional team) reviews (e.g., Facilities, environmental health and safety [EHS], Critical Infrastructure, IT, etc.).
-			- The process should track the entire change, from initial request, to final sign-off prior to handover to the site.
-
-			Please see the data sheets for additional guidance.
-		)'
-		)
-		; --------------------------------------------------------------------------------
-		single_lines := Map(
-
-		'rec code','
-		(
-			Equipment / Human Element / Electrical / 
-			
-			LE=0 - Improve Documentation/Records-Elect Asset Integrity Progr and Inspect/Test/Maint
-		)',
-		
-		'title', 'Update the as-built electrical single-line diagrams.',
-
-		'reccomendation', 'Update the as-built electrical single-line diagrams to reflect the latest electrical system studies, or arc-flash hazard analysis, provide it to FM Global, and post the applicable single-line diagram in the associated electrical rooms',
-
-		'hazard','Up to date electrical single-lines, including the information from the electrical system studies, will ensure the electrical system is appropriately designed, aligned to interrupt faults.',
-
-		'technical', '
-		(
-			^bIdentified Deficiency:^b
-			- The as-built electrical single-line diagrams inconsistently updated, or severely outdated. Since then, many important changes have occurred at the site, and to its electrical infrastructure. This was confirmed by site management.
-
-			^bUpdate Guidance:^b
-			- It is highly recommended to have/keep this living document up to date; this should be included in the management of change (MOC) program for evaluation.
-			- Once established, this vital information will be used for any proposed changes or additions under the MOC program.
-			- Unless equipment is being replaced with "like-kind", or no changes have occurred, the electrical as-built single-line and electrical system studies need to be updated every five years.
-			- This should be under a document control and review system, including the drawings posted in the electrical rooms. This will ensure all parties involved will have the latest information to make informed decisions.
-
-			For additional information, please engage a specialized vendor, and the applicable industry standards (e.g., NFPA 70-E, IEEE/NETA).
-			
-			^bAlternative:^b
-			In combination with an arc-flash hazard analysis, the information and documentation can be provided to the drafting vendor of choice. This will significantly lower the cost, and streamline the process.
-			^iNote: An arc-flash hazard analysis requires the necessary electrical system studies be performed as part of the process; it also provides a version (non as-built version) of a single-line diagram.^i
-		)'
-		)
-		; --------------------------------------------------------------------------------
-		IR_LV_Swgr := Map(
-			'rec code','
-		(
-			[To be filled out]
-		)',
-		
-		'title', 'Implement an infrared thermographic (IR) survey program for the low voltage (LV) switchgear.',
-
-		'reccomendation', 'Expand the existing infrared thermographic (IR) program per FM Global Property Loss Prevention Data Sheet 5-20, ^iElectrical Testing^i.',
-
-		'hazard','Malfunctioning electrical equipment can generate excessive heat due to corrosion, dirt, loose connections or overload. Infrared testing can identify faults before incidents or failures occur, avoiding costly, unscheduled downtime and business interruption.',
-
-		'technical', '
-		(
-			
-		)'
-		)
-	}
-	; --------------------------------------------------------------------------------
-}
-
+﻿#Requires AutoHotkey v2
+#Include <Directives\__AE.v2>
+understanding_the_risk := [
+	
+	"primary_exposure_electrical", "
+	(
+	From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
+	
+	A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production.
+	
+	Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
+	
+	In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
+	
+	As the world's largest soda ash mine and manufacturing plant, this facility is a very valuable asset for Genesis Alkali Holdings.
+	
+	From the fire and natural hazards (F&NH) perspective, ignitable liquids at the ELDM plant remain one of the largest exposures here. Their ability to spread over a large area and their high heat of combustion make them difficult to extinguish, which result in large fires with considerable smoke and water damage. Improving the storage of ignitable liquids at the ELDM plant, as outlined in this report, would help reduce the likelihood of a severe ignitable liquid fire.
+	
+	From the boiler and machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure - specifically the medium voltage switchgear batteries. The battery testing recommendation was completed and the issues were identified and corrected. The next step is to improve the asset management by monitoring and controlling the temperature to as close to 77°F as practical, and have a remote alarm to a constantly attended location. 
+	
+	A robust asset integrity strategy coupled with thorough documentation, is necessary for trending, predicting, outage planning, and/or supporting an effective asset management program.
+	
+	Management and maintenance personnel have been working diligently to improve the asset integrity programs, and should be commended for their ongoing efforts in this area. Any gaps in maintenance routines are identified and reviewed for implementation.
+	
+	In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
+	)",
+	
+]
 ;ListHotkeys
 ;#NoTrayIcon
 ;---------------------------------------------------------------------------
@@ -430,7 +81,7 @@ Management and maintenance personnel have been working diligently to improve the
 In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
 )"
 Send("^v")
-
+return
 } 
 :*:utrmechf::
 { 
@@ -468,12 +119,139 @@ Management, operations, and maintenance personnel have been working diligently t
 In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
 )"
 Send("^v")
+return
 } 
 ;---------------------- End of UTR Text -------------------------------------------
 ;---------------------- ICS Comment -------------------------------------------
 
 ;:*:uthi::Additional recommendations to reduce the exposures at this facility are contained within this report. These recommendations were not discussed in detail because of the focused nature of this visit. However, by implementing these recommendations the building will be less likely to incur a devastating loss that requires months to repair before normal operations can resume.
-; Return
+Return
+
+; #Include <HznPlus.v2> ; including to hopefully wait until the bold/underline/italics keys are pressed (state = 6)
+:*:icscommf::
+{
+	SendLevel((A_SendLevel+1))
+	BlockInput(1)
+	; Send('
+	; (
+	; 	Industrial Control Systems (ICS) Evaluation:
+	; 	An evaluation of ICS is now included in boiler and machinery evaluations and was performed for the first time at this facility during this visit.
+	; )'
+	; )
+	A_Clipboard := '
+	(
+		Industrial Control Systems (ICS) Evaluation:
+		An evaluation of ICS is now included in boiler and machinery evaluations and was performed for the first time at this facility during this visit.
+	)'
+	clip_it()
+	Send('+{Home}')
+	Sleep(100)
+	Send('^+v')
+	Sleep(500)
+	Send('{Up}')
+	Send('+{Home}')
+	Sleep(100)
+	Send('^b^u')
+	Sleep(100)
+	BlockInput(0)
+	SendLevel((A_SendLevel-1))
+	Send('{Down 2}')
+}
+; {
+; 	; sCd := A_ControlDelay
+; 	; SetControlDelay(20)
+; 	hCtl := ControlGetFocus('A')
+; 	cSleep := 50
+; 	lSleep := 5
+; 	; bClip := ClipboardAll()
+; 	DllCall("EmptyClipboard")
+; 	DllCall("OpenClipboard")
+; 	DllCall("EmptyClipboard")
+; 	DllCall("OpenClipboard", "Ptr", hCtl)
+; 	DllCall("EmptyClipboard")
+; 	DllCall("CloseClipboard")
+; 	Loop lSleep
+; 		Sleep(cSleep) ; Sleep for a bit
+; 	Until DllCall("GetOpenClipboardWindow") ; If clipboard still in use (long paste)
+; 	SendLevel((A_SendLevel+1))
+; 	BlockInput(1)
+; 	Send('^b' . '^u')
+; 	Sleep(cSleep)
+; 	A_Clipboard := 'Industrial Control Systems (ICS) Evaluation:'
+; 	Loop lSleep
+; 		Sleep(cSleep) ; Sleep for a bit
+; 	Until DllCall("GetOpenClipboardWindow") ; If clipboard still in use (long paste)
+; 	Send('^+v')
+; 	; DllCall("EmptyClipboard")
+; 	; DllCall("OpenClipboard")
+; 	; DllCall("EmptyClipboard")
+; 	; DllCall("OpenClipboard", "Ptr", hCtl)
+; 	; DllCall("EmptyClipboard")
+; 	; DllCall("CloseClipboard")
+; 	; Loop lSleep
+; 	; 	Sleep(cSleep) ; Sleep for a bit
+; 	; Until DllCall("GetOpenClipboardWindow") ; If clipboard still in use (long paste)
+; 	; Send('^b' . '^u')
+; 	Send('^u')
+; 	Sleep(cSleep)
+; 	Send('^b')
+; 	Sleep(cSleep)
+; 	DllCall("EmptyClipboard")
+; 	DllCall("OpenClipboard")
+; 	DllCall("EmptyClipboard")
+; 	DllCall("OpenClipboard", "Ptr", hCtl)
+; 	DllCall("EmptyClipboard")
+; 	DllCall("CloseClipboard")
+; 	Send('`n')
+; 	Sleep(100)
+; 	A_Clipboard := 'An evaluation of ICS is now included in boiler and machinery evaluations and was performed for the first time at this facility during this visit.'
+; 	; ClipWait(5)
+; 	Send('^+v')
+; 	DllCall("EmptyClipboard")
+; 	DllCall("OpenClipboard") ;, "Ptr", hCtl)
+; 	DllCall("EmptyClipboard")
+; 	DllCall("CloseClipboard")
+; 	; A_Clipboard := bClip
+; 	SetControlDelay(sCd)
+; return
+; } 
+;---------------------- End ICS Comment -------------------------------------------
+
+:?*C1:comments::
+{
+	SendLevel((A_SendLevel+1))
+	BlockInput(1)
+	A_Clipboard := '
+	(
+		Additional Boiler and Machinery (B & M) Minor Recommendations:
+		In addition to the formal B&M recommendations made, the following items also represent good loss prevention advice and should be completed.
+	)'
+	clip_it()
+	Send('+{Home}')
+	Sleep(100)
+	Send('^v')
+	Sleep(500)
+	Send('{Up}')
+	Send('+{Home}')
+	Sleep(100)
+	Send('^b^u')
+	Sleep(100)
+	BlockInput(0)
+	SendLevel((A_SendLevel-1))
+	Send('{Down 2}')
+}
+:?*:closeconff::
+{ 
+	SendLevel((A_SendLevel+1))
+	BlockInput(1)
+	A_Clipboard := "The closing conference date shown on this report is different than the last day the engineer was onsite. This was due to a request by the client to delay to obtain and provide records. The last day onsite was "
+	clip_it()
+	Send('+{Home}')
+	Sleep(100)
+	Send("^v")
+	BlockInput(0)
+	SendLevel((A_SendLevel-1))
+} 
 ;-------------------------- Red Tag Recommendation ----------------------------------
 
 :*:rtpst::Use of the FM Global Red Tag Permit System.
@@ -538,7 +316,7 @@ Send("^v")
 
 :*:erpr::The ERP should include the following positions:{Enter}Person-in-Charge - This person directs actions of personnel, is responsible for keeping the ERP roster current and ensuring personnel are trained.{Enter}Notifier - The notifier is designated to call the fire department.{Enter}Sprinkler Valve Operator - In the event of a fire, this person goes to the valve controlling the fire area and ensures it is open.{Enter}Utilities Operator - This person assists the fire department as needed to shut down utilities and hazardous processes.{Enter}Fire Pump Operator - The fire pump operator is designated to respond to the fire pump and ensure it is operating.{Enter}{Enter}Members of the emergency response team should be provided with quarterly refresher training.
 
-
+return
 
 
 
@@ -627,7 +405,7 @@ A_Clipboard := "Management stated they understand the recommendation. When the r
 
 Send("^v")
 Sleep(100)
-
+return
 } 
 
 :*:eleclvt::
@@ -637,7 +415,7 @@ A_Clipboard:= "Improve asset management of the low voltage switchgear."
 
 Send("^v")
 Sleep(100)
-
+return
 } 
 
 :*:eleclvr::
@@ -647,13 +425,15 @@ A_Clipboard:= "Improve inspection, testing, and maintenance (ITM) of the low vol
 
 Send("^v")
 Sleep(100)
-SendLevel(1)
+SendLevel(5)
 ;SetKeyDelay,100,10
 Send("fmdsf")
+Sleep(100)
 Send("{Space}")
 ;SetKeyDelay,100,10
+Sleep(10)
 Send("5-20f")
-
+return
 } 
 
 :*:eleclvd::
@@ -687,7 +467,7 @@ For full guidance on all applicable sections, please see Data Sheet 5-20.
 
 Send("^v")
 Sleep(100)
-
+return
 
 
 ; ================================== MV SWITCHGEAR  ==========================
@@ -700,7 +480,7 @@ A_Clipboard := "Improve asset management of the medium voltage switchgear."
 
 Send("^v")
 Sleep(100)
-
+return
 } 
 
 :*:mvswgrrec::
@@ -736,7 +516,7 @@ Please see the data sheet for full details and additional guidance.
 
 Send("^v")
 Sleep(100)
-
+return
 
 ; =================================================================
 } 
@@ -751,13 +531,13 @@ The switchgear protects the electrical distribution and downstream production eq
 
 Send("^v")
 Sleep(100)
-
+return
 
 ; =========================== ECP STUFF ==================================
 } 
 
 :*:ecprinsr::Management stated they understand the recommendation, and have agreed to add the documents to the existing document review management program. Once the documents are added, reviewed, and updated, FM Global will be provided the documents, and contacted for review prior to closure of the recommendation. No formal timeline for completion was offered.
-
+return
 
 ; ==================TRANSFORMERS ==============
 :*:xfmrrec::
@@ -795,7 +575,7 @@ Please see the data sheet for full details.
 
 Send("^v")
 Sleep(100)
-
+return
 
 ; ================ PARTIAL DISCHARGE SURVEYS ====================================
 } 
@@ -822,7 +602,7 @@ A_Clipboard := "Note: This recommendation is being made due to updated guidance,
 
 Send("^v")
 Sleep(100)
-
+return
 } 
 
 :*:pduth::
@@ -834,7 +614,7 @@ A_Clipboard := "
 )"
 Send('^v')
 Sleep(100)
-
+return
 }
 
 :*:pdtech::
@@ -856,7 +636,7 @@ Sleep(100)
 Send("{LShift Down}{Home}{LShift Up}")
 Sleep(100)
 Send("^#b")
-
+return
 
 ; ============================ BATTERY STUFF =====================
 } 
@@ -867,7 +647,7 @@ Sleep(100)
 A_Clipboard := "Improve inspection, testing, and maintenance (ITM) of medium voltage (MV) switchgear batteries."
 Send("^v")
 Sleep(100)
-
+return
 } 
 :*:battmgmt::
 { 
@@ -876,7 +656,7 @@ Sleep(100)
 A_Clipboard := "Improve asset management of medium voltage (MV) switchgear batteries."
 Send("^v")
 Sleep(100)
-
+return
 } 
 :*:battrec::
 { 
@@ -901,7 +681,7 @@ A_Clipboard := "
 
 Send("^v")
 Sleep(100)
-
+return
 } 
 :*:battuth::
 { 
@@ -910,7 +690,7 @@ A_Clipboard := "Switchgear batteries are critical safety devices, and provide th
 Sleep(100)
 Send("^v")
 Sleep(100)
-
+return
 } 
 
 :*:battitmf::
@@ -938,7 +718,7 @@ Alternatives:
 Please see the data sheet for full guidance details.
 )"
 Send("^v")
-
+return
 } 
 
 :*:battmgmf::
@@ -958,7 +738,7 @@ Please see the data sheet for full guidance details.
 Sleep(100)
 Send("^v")
 Sleep(100)
-
+return
 } 
 
 :*:battresp::
@@ -969,3 +749,4 @@ Sleep(100)
 Send("^v")
 Sleep(100)
 }
+return
