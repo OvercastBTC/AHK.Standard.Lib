@@ -40,7 +40,6 @@ _AE_DetectHidden(true)
 _AE_SetDelays(-1)
 _AE_PerMonitor_DPIAwareness()
 ; --------------------------------------------------------------------------------
-;@Ahk2Exe-IgnoreBegin
 /**
  * Function: Includes
  */
@@ -53,21 +52,17 @@ _AE_PerMonitor_DPIAwareness()
 #Include <Extensions\Sort>
 #Include <Extensions\String>
 #Include <Tools\Info>
-;@Ahk2Exe-IgnoreEnd
-
-; #HotIf WinActive(A_ScriptName)
-; 	~^s:: Run(A_ScriptName)
-; #HotIf
-; --------------------------------------------------------------------------------
-toggleCapsLock(){
-    SetCapsLockState(!GetKeyState('CapsLock', 'T'))
+; ---------------------------------------------------------------------------
+toggleCapsLock()
+{
+	SetCapsLockState(!GetKeyState('CapsLock', 'T'))
 }
 ; ---------------------------------------------------------------------------
 _AE_DetectHidden(bool?)
 {
-    bool := true
+	bool := true
 	DetectHiddenText(bool)
-    DetectHiddenWindows(bool)
+	DetectHiddenWindows(bool)
 }
 ; --------------------------------------------------------------------------------
 _AE_SetDelays(n?) {
@@ -81,12 +76,15 @@ _AE_PerMonitor_DPIAwareness()
 {
 	MaximumPerMonitorDpiAwarenessContext := VerCompare(A_OSVersion, ">=10.0.15063") ? -4 : -3
 	Global DefaultDpiAwarenessContext := MaximumPerMonitorDpiAwarenessContext, A_DPI := DefaultDpiAwarenessContext
-	try
+	try{
 		DllCall("SetThreadDpiAwarenessContext", "ptr", MaximumPerMonitorDpiAwarenessContext, "ptr")
-	catch 
+	}
+	catch{ 
 		DllCall("SetThreadDpiAwarenessContext", "ptr", -4, "ptr")
-	else
+	}
+	else {
 		DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
+	}
 	return A_DPI
 }
 __AE_CopyLib() {

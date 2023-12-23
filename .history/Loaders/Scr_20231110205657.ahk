@@ -29,7 +29,7 @@
 #Include <App\OBS>
 #Include <App\Player>
 #Include <App\Screenshot>
-; #Include <App\Shows>
+#Include <App\Shows>
 #Include <App\Spotify>
 #Include <App\Steam>
 #Include <App\Telegram>
@@ -73,7 +73,7 @@
 
 #Include <Includes\Links>
 #Include <Includes\Notes>
-; #Include <Common_OSTitles>
+#Include <Common_OSTitles>
 #Include <RecLibs\Common_Rec_Texts>
 
 ;; Postload

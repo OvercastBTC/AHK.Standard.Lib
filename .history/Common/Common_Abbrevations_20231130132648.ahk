@@ -1,5 +1,6 @@
 ﻿#Requires Autohotkey v2+
 #Include <Directives\__AE.v2>
+#Include <HznPlus.v2>
 #Include <App\Horizon>
 
 ; ----------------------------------------------------------------------------------------------------------------------
@@ -380,6 +381,8 @@ Send("^v")
 :*:NiCdf::Nickle Cadmium (NiCd)
 :*:expidite::expedite
 :*:knowledgable::knowledgeable
+
+
 
 ;---------------------------------------------------------------------------
 ;                           Inclusive Language

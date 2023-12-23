@@ -16,6 +16,91 @@ class gitlibrary {
 		ghLib.Submit()
 		ghLib.Show()
 	}
+	
+	static git_InstallAHKLibrary(link, folder:=''){
+		; if !fExist := DirExist(folder){
+		if !DirExist(folder){
+			DirCreate(folder)
+		}
+		git_install := Map()
+	
+		link := StrReplace(link,'addlib ','')
+		; Infos('link:' link)
+		link := StrReplace(link, 'https://github.com','')
+		; Info('link:' link)
+		link := StrReplace(link, 'blob/',,,, 1)
+		; Info('link:' link)
+		link := StrReplace(link, 'tree/','',,, 1)
+		; Info('link:' link)
+		file_html := GetHtml('https://raw.githubusercontent.com/' link)
+		Infos('file_html: ' file_html)
+		RegExMatch(link, '\/([^.\/]+\.\w+)$', &match)
+		newFile := match[1]
+		Infos('newFile: ' newFile)
+		file_name := StrReplace(newFile, '.url', '.ahk')
+		Infos('file_name: ' file_name)
+		; try {
+			; 	WriteFile(file_name, file_html)
+			; }
+			; Infos(
+				; 	'libFolder: ' libFolder '`n'
+				; 	'file_name: ' file_name '`n'
+				; 	'file_text: ' file_html '`n'
+				; )
+				; Info(newFile ' library installed in: ' libFolder)
+		git_install.Set(
+			'file_folder', folder, 
+			'file_name', file_name, 
+			'file_text',file_html
+		)
+		git_file := folder '\' file_name
+		Infos('git_file: ' git_file)
+			
+		If !FileExist(git_file) {
+			WriteFile(git_file, 'git_app_link := ' '"' file_html '"')
+			; FileAppend(file_html,git_file, 'UTF-8')
+		}
+		return git_install
+	}
+	static Install_Git_Lib(link, folder:=''){
+		; if !FileExist := DirExist(folder){
+		if !DirExist(folder){
+			DirCreate(folder)
+		}
+		git_install := Map()
+		; static libFolder := Paths.Lib . '\' . folder
+		link := StrReplace(link,'addlib ','')
+		link := StrReplace(link, 'https://github.com','')
+		link := StrReplace(link, 'blob/',,,, 1)
+		link := StrReplace(link, 'tree/','',,, 1)
+		link := 'https://raw.githubusercontent.com' link
+		Infos('link: ' link)
+		A_Clipboard := link
+		file_html := GetHtml(link)
+		Infos(file_html)
+		RegExMatch(link, '\/([^.\/]+\.\w+)$', &match)
+		newFile := match[1]
+		Infos('newFile: ' newFile)
+		file_name := StrReplace(newFile, '.url', '.ahk')
+		git_install.Set(
+			; 'libFolder', libFolder, 
+			'file_name', file_name, 
+			; 'file_text',file_html
+		)
+		if (folder = '') {
+			git_file := Paths.Lib '\' file_name
+		} else {
+			git_file := folder '\' file_name
+		}
+		Infos(git_file)
+		MsgBox(git_file)
+		; git_file := libFolder '\' file_name
+		; If !FileExist(git_file) {
+			; 	WriteFile(git_file, 'git_app_link := ' '"' file_html '"')
+			; }
+		return git_install
+	}
+	
 }
 ^+!t::testgui()
 testgui() {
@@ -29,93 +114,9 @@ testgui() {
 	ghLib.Submit()
 	ghLib.Show()
 }
-
-git_InstallAHKLibrary(link, folder:=''){
-	if !fExist := DirExist(folder){
-		DirCreate(folder)
-	}
-	git_install := Map()
-	
-	link := StrReplace(link,'addlib ','')
-	; Infos('link:' link)
-	link := StrReplace(link, 'https://github.com','')
-	; Info('link:' link)
-	link := StrReplace(link, 'blob/',,,, 1)
-	; Info('link:' link)
-	link := StrReplace(link, 'tree/','',,, 1)
-	; Info('link:' link)
-	file_html := GetHtml('https://raw.githubusercontent.com/' link)
-	Info('file_html: ' file_html)
-	RegExMatch(link, '\/([^.\/]+\.\w+)$', &match)
-	newFile := match[1]
-	Info('newFile:' newFile)
-	file_name := StrReplace(newFile, '.url', '.ahk')
-	Info('file_name' file_name)
-	; try {
-	; 	WriteFile(file_name, file_html)
-	; }
-	; Infos(
-	; 	'libFolder: ' libFolder '`n'
-	; 	'file_name: ' file_name '`n'
-	; 	'file_text: ' file_html '`n'
-	; )
-	; Info(newFile ' library installed in: ' libFolder)
-	git_install.Set(
-		'file_folder', folder, 
-		'file_name', file_name, 
-		'file_text',file_html
-	)
-	git_file := folder '\' file_name
-	Infos('git_file: ' git_file)
-
-	If !FileExist(git_file) {
-		WriteFile(git_file, 'git_app_link := ' '"' file_html '"')
-		; FileAppend(file_html,git_file, 'UTF-8')
-	}
-	return git_install
-}
-
-Install_Git_Lib(link, folder:=''){
-	if !fExist := DirExist(folder){
-		DirCreate(folder)
-	}
-	git_install := Map()
-	; static libFolder := Paths.Lib . '\' . folder
-	link := StrReplace(link,'addlib ','')
-	link := StrReplace(link, 'https://github.com','')
-	link := StrReplace(link, 'blob/',,,, 1)
-	link := StrReplace(link, 'tree/','',,, 1)
-	link := 'https://raw.githubusercontent.com' link
-	Infos('link: ' link)
-	A_Clipboard := link
-	file_html := GetHtml(link)
-	Infos(file_html)
-	RegExMatch(link, '\/([^.\/]+\.\w+)$', &match)
-	newFile := match[1]
-	Infos('newFile: ' newFile)
-	file_name := StrReplace(newFile, '.url', '.ahk')
-	git_install.Set(
-		; 'libFolder', libFolder, 
-		'file_name', file_name, 
-		; 'file_text',file_html
-	)
-	if (folder = '') {
-		git_file := Paths.Lib '\' file_name
-	} else {
-		git_file := folder '\' file_name
-	}
-	Infos(git_file)
-	MsgBox(git_file)
-	; git_file := libFolder '\' file_name
-	; If !FileExist(git_file) {
-	; 	WriteFile(git_file, 'git_app_link := ' '"' file_html '"')
-	; }
-	return git_install
-}
-
-class Git {
-
-	__New(workingDir) {
+	class Git {
+		
+		__New(workingDir) {
 		this.shell := Cmd(workingDir)
 	}
 

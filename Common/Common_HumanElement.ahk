@@ -75,12 +75,13 @@ return
 
 
 :*:he-elec::
-{ ; V1toV2: Added bracket
+{
 SendLevel(1)
-Send('+{Home down}' '{Home up}')
-A_Clipboard:= ""
 clip_it()
+txt :=''
+A_Clipboard:= ""
 Sleep(100)
+Send('+{Home down}' '{Home up}')
 txt:="
 (
 ^b[- Design -]^b
@@ -172,9 +173,10 @@ Load Xfr: M
 Load Bank: A
 Batts: rplc. 5yrs
 )"
-A_Clipboard := txt
-Sleep(100)
-Send('^v')
+; A_Clipboard := txt
+; Sleep(100)
+; Send('^v')
+Send(txt)
 OnMessage(WM_PASTE := 0x0302, highlight)
 highlight(*){
    Infos('highlight`n')

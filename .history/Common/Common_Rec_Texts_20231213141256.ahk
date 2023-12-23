@@ -1,58 +1,31 @@
-﻿Class RecLibs {
-
-	static understanding_the_risk := [
-		
-		"electrical 1° exposure - itm", "
-		(
-		From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
-		
-		A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production.
-		
-		Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
-		
-		As the world's largest soda ash mine and manufacturing plant, this facility is a very valuable asset for Genesis Alkali Holdings.
-		
-		From the fire and natural hazards (F&NH) perspective, ignitable liquids at the ELDM plant remain one of the largest exposures here. Their ability to spread over a large area and their high heat of combustion make them difficult to extinguish, which result in large fires with considerable smoke and water damage. Improving the storage of ignitable liquids at the ELDM plant, as outlined in this report, would help reduce the likelihood of a severe ignitable liquid fire.
-		
-		From the boiler and machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure - specifically the medium voltage switchgear batteries. The battery testing recommendation was completed and the issues were identified and corrected. The next step is to improve the asset management by monitoring and controlling the temperature to as close to 77°F as practical, and have a remote alarm to a constantly attended location. 
-		
-		A robust asset integrity strategy coupled with thorough documentation, is necessary for trending, predicting, outage planning, and/or supporting an effective asset management program.
-		
-		Management and maintenance personnel have been working diligently to improve the asset integrity programs, and should be commended for their ongoing efforts in this area. Any gaps in maintenance routines are identified and reviewed for implementation.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
-		)",
-		
-	]
-	static map_understanding_the_risk := Map(
-		
-		"electrical 1° exposure - itm", "
-		(
-		From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
-		
-		A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production.
-		
-		Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
-		
-		As the world's largest soda ash mine and manufacturing plant, this facility is a very valuable asset for Genesis Alkali Holdings.
-		
-		From the fire and natural hazards (F&NH) perspective, ignitable liquids at the ELDM plant remain one of the largest exposures here. Their ability to spread over a large area and their high heat of combustion make them difficult to extinguish, which result in large fires with considerable smoke and water damage. Improving the storage of ignitable liquids at the ELDM plant, as outlined in this report, would help reduce the likelihood of a severe ignitable liquid fire.
-		
-		From the boiler and machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure - specifically the medium voltage switchgear batteries. The battery testing recommendation was completed and the issues were identified and corrected. The next step is to improve the asset management by monitoring and controlling the temperature to as close to 77°F as practical, and have a remote alarm to a constantly attended location. 
-		
-		A robust asset integrity strategy coupled with thorough documentation, is necessary for trending, predicting, outage planning, and/or supporting an effective asset management program.
-		
-		Management and maintenance personnel have been working diligently to improve the asset integrity programs, and should be commended for their ongoing efforts in this area. Any gaps in maintenance routines are identified and reviewed for implementation.
-		
-		In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
-		)",
-		
-	)
-}
+﻿#Requires AutoHotkey v2
+#Include <Directives\__AE.v2>
+understanding_the_risk := [
+	
+	"primary_exposure_electrical", "
+	(
+	From the Boiler and Machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure.
+	
+	A robust asset integrity program coupled with thorough maintenance, and effective management of change, are essential to ensuring resilience, and reliable production.
+	
+	Management, operations, and maintenance personnel have been working diligently to improve the maintenance programs and practices. Any gaps in maintenance routines are identified and reviewed for implementation. Site management and maintenance personnel should be commended for their ongoing efforts in this area.
+	
+	In addition to the formal recommendations made, additional comments have been provided that also represent good loss prevention advice and should be completed.
+	
+	As the world's largest soda ash mine and manufacturing plant, this facility is a very valuable asset for Genesis Alkali Holdings.
+	
+	From the fire and natural hazards (F&NH) perspective, ignitable liquids at the ELDM plant remain one of the largest exposures here. Their ability to spread over a large area and their high heat of combustion make them difficult to extinguish, which result in large fires with considerable smoke and water damage. Improving the storage of ignitable liquids at the ELDM plant, as outlined in this report, would help reduce the likelihood of a severe ignitable liquid fire.
+	
+	From the boiler and machinery (B&M) perspective, the primary hazard is failure of the electrical infrastructure - specifically the medium voltage switchgear batteries. The battery testing recommendation was completed and the issues were identified and corrected. The next step is to improve the asset management by monitoring and controlling the temperature to as close to 77°F as practical, and have a remote alarm to a constantly attended location. 
+	
+	A robust asset integrity strategy coupled with thorough documentation, is necessary for trending, predicting, outage planning, and/or supporting an effective asset management program.
+	
+	Management and maintenance personnel have been working diligently to improve the asset integrity programs, and should be commended for their ongoing efforts in this area. Any gaps in maintenance routines are identified and reviewed for implementation.
+	
+	In addition to the formal recommendations made, additional comments have been provided that also represent industry best practices, and should be completed.
+	)",
+	
+]
 ;ListHotkeys
 ;#NoTrayIcon
 ;---------------------------------------------------------------------------
@@ -152,59 +125,37 @@ return
 ;---------------------- ICS Comment -------------------------------------------
 
 ;:*:uthi::Additional recommendations to reduce the exposures at this facility are contained within this report. These recommendations were not discussed in detail because of the focused nature of this visit. However, by implementing these recommendations the building will be less likely to incur a devastating loss that requires months to repair before normal operations can resume.
-Return
+; Return
 
-#Include <HznPlus.v2> ; including to hopefully wait until the bold/underline/italics keys are pressed (state = 6)
-:*:icscomf::
+:*:icscommf::
 {
 	SendLevel((A_SendLevel+1))
 	BlockInput(1)
-	Send('^u')
-	; hWnd := WinActive('A')
-	; DllCall("GetWindowThreadProcessId", "Int", hwnd, "Int*", &tpID := 0)
-	; name := WinGetProcessName(hwnd)
-	; A_Process := name
-	; if (A_Process ~= 'i)hznHorizon.exe')
-	; 	static hznHwnd := hWnd
-	; list := []
-	; list := WinGetControls(hznHwnd)
-	; ClassNN := ''
-	; hTb := 0
-	; for , ClassNN in list {
-	; 	if (ClassNN ~= 'i)m.*bar.*') {
-	; 		hTb := ControlGetHwnd(ClassNN, hznHwnd)
-	; 	}
-	; }
-	; if !(GETBUTTONSTATE(102, hTb) = 6)
-	; 	While !(GETBUTTONSTATE(102, hTb) = 6)
-	; 		Sleep(10)
-	; Sleep(100)
-	Send('^b')
-	; if !(GETBUTTONSTATE(100, hTb) = 6)
-	; 	While !(GETBUTTONSTATE(100, hTb) = 6)
-	; 		Sleep(10)
-	; Sleep(100)
-	A_Clipboard := 'Industrial Control Systems (ICS) Evaluation:'
-	; Sleep(100)
+	; Send('
+	; (
+	; 	Industrial Control Systems (ICS) Evaluation:
+	; 	An evaluation of ICS is now included in boiler and machinery evaluations and was performed for the first time at this facility during this visit.
+	; )'
+	; )
+	A_Clipboard := '
+	(
+		Industrial Control Systems (ICS) Evaluation:
+		An evaluation of ICS is now included in boiler and machinery evaluations and was performed for the first time at this facility during this visit.
+	)'
 	clip_it()
-	clip_it(1)
-	; Sleep(300)
-	Send('^u')
-	; if !(GETBUTTONSTATE(102, hTb) = 4)
-	; 	While !(GETBUTTONSTATE(102, hTb) = 4)
-	; 		Sleep(10)
-	; Sleep(100)
-	Send('^b')
-	; if !(GETBUTTONSTATE(100, hTb) = 4) {
-	; 	While !(GETBUTTONSTATE(100, hTb) = 4)
-	; 		Sleep(10)
-	; }
-	; Sleep(100)
-	A_Clipboard := '`nAn evaluation of ICS is now included in boiler and machinery evaluations and was performed for the first time at this facility during this visit.'
-	clip_it()
-	clip_it(1)
+	Send('+{Home}')
 	Sleep(100)
-	return
+	Send('^+v')
+	Sleep(500)
+	Send('{Up}')
+	Send('+{Home}')
+	Sleep(100)
+	Send('^b^u')
+	Sleep(100)
+	BlockInput(0)
+	SendLevel((A_SendLevel-1))
+	Send('{Down 2}')
+}
 ; {
 ; 	; sCd := A_ControlDelay
 ; 	; SetControlDelay(20)
@@ -262,40 +213,45 @@ Return
 ; 	; A_Clipboard := bClip
 ; 	SetControlDelay(sCd)
 ; return
+; } 
 ;---------------------- End ICS Comment -------------------------------------------
-} 
 
-:*C1:rptcomments::
+:?*C1:comments::
 {
-	slbak := A_SendLevel
 	SendLevel((A_SendLevel+1))
 	BlockInput(1)
-	Send('^+{Left}')
+	A_Clipboard := '
+	(
+		Additional Boiler and Machinery (B & M) Minor Recommendations:
+		In addition to the formal B&M recommendations made, the following items also represent good loss prevention advice and should be completed.
+	)'
+	clip_it()
+	Send('+{Home}')
 	Sleep(100)
-	Send('^b')
+	Send('^v')
+	Sleep(500)
+	Send('{Up}')
+	Send('+{Home}')
 	Sleep(100)
-	Send('^u')
-	Sleep(300)
-	Send('Additional Boiler and Machinery (B & M) Minor Recommendations:')
-	Sleep(300)
-	Send('^b')
+	Send('^b^u')
 	Sleep(100)
-	Send('^u')
-	Sleep(100)
-	Send('`n')
-	Send('In addition to the formal B & M recommendations made, the following items also represent good loss prevention advice and should be completed.')
-	SendLevel(slbak)
 	BlockInput(0)
-	return
+	SendLevel((A_SendLevel-1))
+	Send('{Down 2}')
 }
 :?*:closeconff::
 { 
-SendLevel(1)
-A_Clipboard := "The closing conference date shown on this report is different than the last day the engineer was onsite. This was due to a request by the client to delay to obtain and provide records. The last day onsite was "
-Send("^v")
-return
-;-------------------------- Red Tag Recommendation ----------------------------------
+	SendLevel((A_SendLevel+1))
+	BlockInput(1)
+	A_Clipboard := "The closing conference date shown on this report is different than the last day the engineer was onsite. This was due to a request by the client to delay to obtain and provide records. The last day onsite was "
+	clip_it()
+	Send('+{Home}')
+	Sleep(100)
+	Send("^v")
+	BlockInput(0)
+	SendLevel((A_SendLevel-1))
 } 
+;-------------------------- Red Tag Recommendation ----------------------------------
 
 :*:rtpst::Use of the FM Global Red Tag Permit System.
 
@@ -468,11 +424,13 @@ A_Clipboard:= "Improve inspection, testing, and maintenance (ITM) of the low vol
 
 Send("^v")
 Sleep(100)
-SendLevel(1)
+SendLevel(5)
 ;SetKeyDelay,100,10
 Send("fmdsf")
+Sleep(100)
 Send("{Space}")
 ;SetKeyDelay,100,10
+Sleep(10)
 Send("5-20f")
 return
 } 
@@ -748,13 +706,21 @@ Section 2.5.2 and Table 1: Capacitance testing, maintenance schedule, and other 
 Capacity (Performance or Discharge) Testing: (see Note 2)
 Section 2.5.2.4: Periodicity of capacity testing based on battery type, and other useful information.
 
-Failure Modes:
-Section 3.3.3 and Table 2: Provides pictures and technical detail on major failure modes of flooded/vented lead acid (VLA) batteries (e.g., sulfating).
+Failure Modes and Battery Testing:
+Section 3.3.1: General information
+Section 3.3.4: Valve regulated lead acid (VRLA) batteries
+Section 3.3.3 and Table 2: Flooded/vented lead acid (VLA) batteries
+- Provides pictures and technical detail on major failure modes of  (e.g., sulfating).
 
 Alternatives:
 - Note 1: If all of Section 2.3.6.2 (as applicable) parameters are monitored, annual capacitance (internal ohmic) testing is acceptable. The continuously monitored parameters should match Table 1; whatever is not continuously monitored, perform at regular recommended periodicity.  
 - Note 2: If all of Table 1, including internal ohmic, is performed, and some additional conditions met (detailed below), it is acceptable not to perform capacity (performance or discharge) testing, due to the battery's application.
-- Must meet all of the following conditions: Baseline values are recorded at the recommended intervals; the same testing equipment is utilized throughout battery life; a prescriptive failing/failed battery replacement/capacity testing program is developed, and followed; the batteries do not support any loads other than the medium voltage switchgear, and its associated protective features.
+
+Conditions to Eliminate Capacity Testing:
+- Baseline values are recorded at the recommended intervals
+- The same testing equipment is utilized throughout battery life
+- A prescriptive failing/failed battery replacement/capacity testing program is used
+- The batteries do not support any loads other than the medium voltage switchgear, and its associated protective features.
 
 Please see the data sheet for full guidance details.
 )"

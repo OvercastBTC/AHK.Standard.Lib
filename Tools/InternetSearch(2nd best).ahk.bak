@@ -2,7 +2,7 @@
 #Include <Tools\CleanInputBox>
 #Include <Extensions\String>
 #Include <App\Browser>
-#Include <Tools\Info>
+
 
 class InternetSearch extends CleanInputBox {
 
@@ -13,28 +13,44 @@ class InternetSearch extends CleanInputBox {
 
 	static FeedQuery(input) {
 		restOfLink := this.SanitizeQuery(input)
-		if (this.SelectedSearchEngine == this.AvailableSearchEngines['AHK-V2-Docs']) {
-			Browser.RunLink("https://duckduckgo.com/?q=site:autohotkey.com/boards%20" restOfLink)
-			Browser.RunLink(this.SelectedSearchEngine restOfLink)
-		}
-
-		Else {
-			Browser.RunLink(this.SelectedSearchEngine restOfLink)
-		}
+		Browser.RunLink(this.SelectedSearchEngine restOfLink)
 	}
 
 	static DynamicallyReselectEngine(input) {
 		for key, value in this.SearchEngineNicknames {
-			if input.RegExMatch("^" key "* ") {
-				this.SelectedSearchEngine := value
-				input := input[3, -1]
-				break
-			}
-			else {
-				this.SelectedSearchEngine := this.AvailableSearchEngines['Google'] ; sets default search to Google if no RegexMatch occurs.
-			}
+			infos(
+				'key: ' key
+				'`n'
+				'value: ' value	
+			)
+			test := input.RegExMatch("^" key " ")
+			; if input.RegExMatch("^" key " ") {
+			; 	this.SelectedSearchEngine := value
+			; 	input := input[3, -1]
+			; 	break
+			; } else {
+			; 	Infos("not valid")
+			; 	break
+			; }
+			; if !test {
+			; 	Infos("invalid")
+			; 	return
+			; } else {
+			; 	this.SelectedSearchEngine := value
+			; 	input := input[3, -1]
+			; 	return input
+			; }
+			; if input.RegExMatch("^" key " ") {
+			; 	this.SelectedSearchEngine := value
+			; 	input := input[3, -1]
+			; 	break
+			; } else {
+			; 	Infos("not valid")
+			; 	break
+			; }
 		}
-		return input
+		return
+		; return input
 	}
 
 	static TriggerSearch(input) {
@@ -49,6 +65,7 @@ class InternetSearch extends CleanInputBox {
 		"Bing-FMGlobal",  "https://www.bing.com/work/search?q=",
 		"Wikipedia",  "https://en.wikipedia.org/w/index.php?title=Special:Search&search=",
 		"AHK-V2-Docs",   "https://duckduckgo.com/?q=site:autohotkey.com/docs/v2/%20",
+		"AHK-Forums",  "https://duckduckgo.com/?q=site:autohotkey.com/boards%20",
 		; "Rust Docs", "https://doc.rust-lang.org/stable/std/path/struct.PathBuf.html?search=",
 	)
 
@@ -58,7 +75,8 @@ class InternetSearch extends CleanInputBox {
 		"d", this.AvailableSearchEngines["DuckDuckGo"],
 		"f", this.AvailableSearchEngines["Bing-FMGlobal"],
 		"w",  this.AvailableSearchEngines["Wikipedia"],
-		"a",  this.AvailableSearchEngines["AHK-V2-Docs"],
+		"d",  this.AvailableSearchEngines["AHK-V2-Docs"],
+		"a",  this.AvailableSearchEngines["AHK-Forums"],
 		; "r",  this.AvailableSearchEngines["Rust Docs"]
 	)
 

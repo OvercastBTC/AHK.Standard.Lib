@@ -68,3 +68,19 @@
 
 :*C1:edgeconnexf::EdgeConneX, Inc. "EDCSVC03" [Santa Clara CA] / Index No. 001588.25-03
 :*C1:edgeconnexs::EdgeConneX (001588.25-03)
+
+:*C1:cpif::
+{
+	bak:=ClipboardAll()
+	Sleep(100)
+	A_Clipboard:='CPI Intermediate Holdings, Inc. "Microwave Power Products" / 076564.72-03'
+	Sleep(100)
+	Send('^v')
+	Sleep(100)
+	A_Clipboard:=bak
+}
+:*C1:cpis::CPI [Palo Alto] MPP (001588.25-03)
+
+:*C1:cityofsjf::City of San Jose "San Jose/Santa Clara Water Pollution Control Plant" [San Jose CA] / 001455.62-01
+:*C1:cityofsjs::San Jose/Santa Clara Water Pollution Control Plant (001455.62-01)
+:*C1:sjwwts::San Jose/Santa Clara Water Pollution Control Plant (001455.62-01)

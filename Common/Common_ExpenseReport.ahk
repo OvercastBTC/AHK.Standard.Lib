@@ -57,7 +57,7 @@
 		Send('Business Travel - Airline Fee - Seat Upgrade - ')
 		return
 	}
-	:*:wifiair::
+	:*:wifi::
 	:*:inter::
 	{
 		Send('Business Travel - Airline Fee - Internet - ')

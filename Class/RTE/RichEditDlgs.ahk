@@ -103,32 +103,33 @@ Class RichEditDlgs {
 		Return RE.SetFont(Font)
 	}
 	; ===================================================================================================================
-	Static FileDlg(RE, Mode, File := "") { ; Open and save as dialog box
+	;!					 Open and save as dialog box
 	; ===================================================================================================================
+	Static FileDlg(RE, Mode, File := "") {
 		; RE   : RichEdit object
 		; Mode : O = Open, S = Save
 		; File : optional file name
-	Static OFN_ALLOWMULTISELECT := 0x200,    OFN_EXTENSIONDIFFERENT := 0x400, OFN_CREATEPROMPT := 0x2000,
+		Static  OFN_ALLOWMULTISELECT := 0x200,    OFN_EXTENSIONDIFFERENT := 0x400, OFN_CREATEPROMPT := 0x2000,
 				OFN_DONTADDTORECENT := 0x2000000, OFN_FILEMUSTEXIST := 0x1000,     OFN_FORCESHOWHIDDEN := 0x10000000,
 				OFN_HIDEREADONLY := 0x4,          OFN_NOCHANGEDIR := 0x8,          OFN_NODEREFERENCELINKS := 0x100000,
 				OFN_NOVALIDATE := 0x100,          OFN_OVERWRITEPROMPT := 0x2,      OFN_PATHMUSTEXIST := 0x800,
 				OFN_READONLY := 0x1,              OFN_SHOWHELP := 0x10,            OFN_NOREADONLYRETURN := 0x8000,
 				OFN_NOTESTFILECREATE := 0x10000,  OFN_ENABLEXPLORER := 0x80000
 				OFN_Size := (4 * 5) + (2 * 2) + (A_PtrSize * 16)
-		Static FilterN1 := "RichText",   FilterP1 := "*.rtf",
+		Static  FilterN1 := "RichText",   FilterP1 := "*.rtf",
 				FilterN2 := "Text",       FilterP2 := "*.txt",
 				FilterN3 := "AutoHotkey", FilterP3 := "*.ahk",
 				DefExt := "rtf",
 				DefFilter := 1
-	SplitPath(File, &Name := "", &Dir := "")
+		SplitPath(File, &Name := "", &Dir := "")
 		Flags := OFN_ENABLEXPLORER
 		Flags |= Mode = "O" ? OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST | OFN_HIDEREADONLY
 							: OFN_OVERWRITEPROMPT
-	VarSetStrCapacity(&FileName, 512)
+		VarSetStrCapacity(&FileName, 512)
 		FileName := Name
-	LenN1 := (StrLen(FilterN1) + 1) * 2, LenP1 := (StrLen(FilterP1) + 1) * 2
-	LenN2 := (StrLen(FilterN2) + 1) * 2, LenP2 := (StrLen(FilterP2) + 1) * 2
-	LenN3 := (StrLen(FilterN3) + 1) * 2, LenP3 := (StrLen(FilterP3) + 1) * 2
+		LenN1 := (StrLen(FilterN1) + 1) * 2, LenP1 := (StrLen(FilterP1) + 1) * 2
+		LenN2 := (StrLen(FilterN2) + 1) * 2, LenP2 := (StrLen(FilterP2) + 1) * 2
+		LenN3 := (StrLen(FilterN3) + 1) * 2, LenP3 := (StrLen(FilterP3) + 1) * 2
 		Filter := Buffer(LenN1 + LenP1 + LenN2 + LenP2 + LenN3 + LenP3 + 4, 0)
 		Adr := Filter.Ptr
 		StrPut(FilterN1, Adr)
@@ -138,34 +139,36 @@ Class RichEditDlgs {
 		StrPut(FilterN3, Adr += LenP2)
 		StrPut(FilterP3, Adr += LenN3)
 		OFN := Buffer(OFN_Size, 0)                     ; OPENFILENAME Structure
-	NumPut("UInt", OFN_Size, OFN, 0)
+		NumPut("UInt", OFN_Size, OFN, 0)
 		Offset := A_PtrSize
-	NumPut("Ptr", RE.Gui.Hwnd, OFN, Offset)        ; HWND owner
+		NumPut("Ptr", RE.Gui.Hwnd, OFN, Offset)        ; HWND owner
 		Offset += A_PtrSize * 2
-	NumPut("Ptr", Filter.Ptr, OFN, OffSet)         ; Pointer to FilterStruc
+		NumPut("Ptr", Filter.Ptr, OFN, OffSet)         ; Pointer to FilterStruc
 		OffSet += (A_PtrSize * 2) + 4
 		OffFilter := Offset
-	NumPut("UInt", DefFilter, OFN, Offset)         ; DefaultFilter Pair
+		NumPut("UInt", DefFilter, OFN, Offset)         ; DefaultFilter Pair
 		OffSet += 4
-	NumPut("Ptr", StrPtr(FileName), OFN, OffSet)   ; lpstrFile / InitialisationFileName
+		NumPut("Ptr", StrPtr(FileName), OFN, OffSet)   ; lpstrFile / InitialisationFileName
 		Offset += A_PtrSize
-	NumPut("UInt", 512, OFN, Offset)               ; MaxFile / lpstrFile length
+		NumPut("UInt", 512, OFN, Offset)               ; MaxFile / lpstrFile length
 		OffSet += A_PtrSize * 3
-	NumPut("Ptr", StrPtr(Dir), OFN, Offset)        ; StartDir
+		NumPut("Ptr", StrPtr(Dir), OFN, Offset)        ; StartDir
 		Offset += A_PtrSize * 2
-	NumPut("UInt", Flags, OFN, Offset)             ; Flags
+		NumPut("UInt", Flags, OFN, Offset)             ; Flags
 		Offset += 8
-	NumPut("Ptr", StrPtr(DefExt), OFN, Offset)     ; DefaultExt
+		NumPut("Ptr", StrPtr(DefExt), OFN, Offset)     ; DefaultExt
 		R := Mode = "S" ? DllCall("Comdlg32.dll\GetSaveFileNameW", "Ptr", OFN.Ptr, "UInt")
 						: DllCall("Comdlg32.dll\GetOpenFileNameW", "Ptr", OFN.Ptr, "UInt")
-	If !(R)
+		If !(R){
 			Return ""
+		}
 		DefFilter := NumGet(OFN, OffFilter, "UInt")
-	Return StrGet(StrPtr(FileName))
+		Return StrGet(StrPtr(FileName))
 	}
 	; ===================================================================================================================
-	Static FindText(RE) { ; Find dialog box
+	;!					Find dialog box
 	; ===================================================================================================================
+	Static FindText(RE) { 
 		; RE : RichEdit object
 	Static FR_DOWN := 1, FR_MATCHCASE := 4, FR_WHOLEWORD := 2,
 			Buf := "", BufLen := 256, FR := "", FR_Size := A_PtrSize * 10
@@ -286,30 +289,30 @@ Class RichEditDlgs {
 ; ===================================================================================================================
 	Static ReplaceText(RE) { ; Replace dialog box
 ; ===================================================================================================================
-	; RE : RichEdit object
-	Static FR_DOWN := 1, FR_MATCHCASE := 4, FR_WHOLEWORD := 2,
-			FBuf := "", RBuf := "", BufLen := 256, FR := "", FR_Size := A_PtrSize * 10
+		; RE : RichEdit object
+		Static FR_DOWN := 1, FR_MATCHCASE := 4, FR_WHOLEWORD := 2, FBuf := "", RBuf := "", BufLen := 256, FR := "", FR_Size := A_PtrSize * 10
 		Text := RE.GetSelText()
 		FBuf := RBuf := ""
 		VarSetStrCapacity(&FBuf, BufLen)
-		If (Text != "") && !RegExMatch(Text, "\W")
+		If (Text != "") && !RegExMatch(Text, "\W"){
 			FBuf := Text
+		}
 		VarSetStrCapacity(&RBuf, BufLen)
 		FR := Buffer(FR_Size, 0)
-	NumPut("UInt", FR_Size, FR)
-		Offset := A_PtrSize
-	NumPut("UPtr", RE.Gui.Hwnd, FR, Offset)              ; hwndOwner
-		OffSet += A_PtrSize * 2
-	NumPut("UInt", FR_DOWN, FR, Offset)	                 ; Flags
-		OffSet += A_PtrSize
-	NumPut("UPtr", StrPtr(FBuf), FR, Offset)             ; lpstrFindWhat
-		OffSet += A_PtrSize
-	NumPut("UPtr", StrPtr(RBuf), FR, Offset)             ; lpstrReplaceWith
-		OffSet += A_PtrSize
-	NumPut("Short", BufLen,	"Short", BufLen, FR, Offset) ; wFindWhatLen, wReplaceWithLen
-		This.ReplaceTextProc("Init", RE.HWND, "")
-	OnMessage(RichEditDlgs.FindReplMsg, RichEditDlgs.ReplaceTextProc)
-	Return DllCall("Comdlg32.dll\ReplaceText", "Ptr", FR.Ptr, "UPtr")
+		NumPut("UInt", FR_Size, FR)
+			Offset := A_PtrSize
+		NumPut("UPtr", RE.Gui.Hwnd, FR, Offset)              ; hwndOwner
+			OffSet += A_PtrSize * 2
+		NumPut("UInt", FR_DOWN, FR, Offset)	                 ; Flags
+			OffSet += A_PtrSize
+		NumPut("UPtr", StrPtr(FBuf), FR, Offset)             ; lpstrFindWhat
+			OffSet += A_PtrSize
+		NumPut("UPtr", StrPtr(RBuf), FR, Offset)             ; lpstrReplaceWith
+			OffSet += A_PtrSize
+		NumPut("Short", BufLen,	"Short", BufLen, FR, Offset) ; wFindWhatLen, wReplaceWithLen
+			This.ReplaceTextProc("Init", RE.HWND, "")
+		OnMessage(RichEditDlgs.FindReplMsg, RichEditDlgs.ReplaceTextProc)
+		Return DllCall("Comdlg32.dll\ReplaceText", "Ptr", FR.Ptr, "UPtr")
 	}
 ; -------------------------------------------------------------------------------------------------------------------
 	Static ReplaceTextProc(L, M, H) { ; skipped wParam, can be found in "This" when called by system

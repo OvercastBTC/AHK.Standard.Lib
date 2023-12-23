@@ -16,7 +16,7 @@ OSTitle := Map(
     "1-1", "1-1, ",
     "1-1t", "Firesafe Building Construction and Materials",
 )
-return
+
 :*:1-0f:: 
 {
 SendLevel(1)
@@ -28,7 +28,7 @@ Sleep(100)
 Send("^i")
 Send(A_Space)
 }
-return
+
 :*:1-1f::
 {
 SendLevel(1)
@@ -40,7 +40,7 @@ Sleep(100)
 Send("^i")
 Send(A_Space)
 }
-return
+
 :*:1-2f::
 {
 SendLevel(1)

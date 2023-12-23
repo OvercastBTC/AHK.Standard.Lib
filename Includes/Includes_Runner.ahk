@@ -16,11 +16,12 @@
 #Include <Misc\Meditate>
 #Include <Misc\CountLibraries>
 #Include <App\Gimp>
-; #Include <App\Shows>
 #Include <Misc\Calculator>
 #Include <App\Explorer>
 #Include <App\Browser>
 #Include <App\Main>
+#Include <App\VisitPlanner>
+; #Include <App\Shows>
 ; ---------------------------------------------------------------------------
 #Include <Scr\Hotstrings>
 ; ---------------------------------------------------------------------------
@@ -33,4 +34,5 @@
 #Include <Scr\Keys\VimMode>
 #Include <Utils\GetFilesSortedByDate>
 #Include <Common\Misc Scripts.V2>
+#Include <Scr\FM_Updater>
 ; ---------------------------------------------------------------------------
