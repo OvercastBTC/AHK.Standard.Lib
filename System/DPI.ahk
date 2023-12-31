@@ -70,6 +70,11 @@ class DPI {
         return (hMonitor := DllCall("MonitorFromWindow", "ptr", WinExist(WinTitle?, WinText?, ExcludeTitle?, ExcludeText?), "int", 2, "ptr") ; MONITOR_DEFAULTTONEAREST
         , DllCall("Shcore.dll\GetDpiForMonitor", "ptr", hMonitor, "int", 0, "uint*", &dpiX:=0, "uint*", &dpiY:=0), dpiX)
     }
+    ; Gets the DPI for the specified window
+    static WinGetDpi(WinTitle?, WinText?, ExcludeTitle?, ExcludeText?) {
+        return (hMonitor := DllCall("MonitorFromWindow", "ptr", WinExist(WinTitle?, WinText?, ExcludeTitle?, ExcludeText?), "int", 2, "ptr") ; MONITOR_DEFAULTTONEAREST
+        , DllCall("Shcore.dll\GetDpiForMonitor", "ptr", hMonitor, "int", 0, "uint*", &dpiX:=0, "uint*", &dpiY:=0), dpiX)
+    }
 
     /**
      * Gets the DPI for the specified window
@@ -147,7 +152,62 @@ class DPI {
      * @returns {Integer} 
      */
     static MonitorFromWindow(WinTitle?, WinText?, flags:=2, ExcludeTitle?, ExcludeText?) => DllCall("MonitorFromWindow", "int", WinExist(WinTitle?, WinText?, ExcludeText?, ExcludeText?), "int", flags, "ptr")
-
+    ; static GetNearestMonitorInfo(*) {
+    static GetMonitorInfo(hWnd := WinActive('A'),info*) {
+        static MONITOR_DEFAULTTONEAREST := 0x00000002
+        info := []
+        If info.Length = 0 {
+            hMonitor := this.MonitorFromWindow(hWnd)
+            DllCall("Shcore\GetDpiForMonitor", "Ptr", hMonitor, "UInt", Monitor_Dpi_Type:=0, "UInt*", &dpiX:=0, "UInt*", &dpiY:=0, "UInt")
+        } else {
+            for each, value in info {
+                hMonitor := this.MonitorFromWindow(value)
+                DllCall("Shcore\GetDpiForMonitor", "Ptr", hMonitor, "UInt", Monitor_Dpi_Type:=0, "UInt*", &dpiX:=0, "UInt*", &dpiY:=0, "UInt")
+            }
+        }
+        ; WinA := ''
+        ; WinA := WinActive('A')
+        ; try hCtl := ControlGetFocus('A')
+        ; try hCtl_title := WinGetTitle(hCtl)
+        ; hMonitor := DllCall("MonitorFromWindow", "ptr", hCtl, "uint", MONITOR_DEFAULTTONEAREST, "ptr")
+        ; hMonitor := this.MonitorFromWindow(hWnd)
+        ; DllCall("Shcore\GetDpiForMonitor", "Ptr", hMonitor, "UInt", Monitor_Dpi_Type:=0, "UInt*", &dpiX:=0, "UInt*", &dpiY:=0, "UInt")
+        ; wDPI := DllCall("User32\GetDpiForWindow", "Ptr", hCtl, "UInt")
+        wDPI := DllCall("User32\GetDpiForWindow", "Ptr", hWnd, "UInt")
+        NumPut("uint", 104, MONITORINFOEX := Buffer(104))
+        if (DllCall("user32\GetMonitorInfo", "ptr", hMonitor, "ptr", MONITORINFOEX)) {
+            
+            ; Name := RegExReplace(Name, '\\\\\.\\', '')
+            Name := RegExReplace(Name := StrGet(MONITORINFOEX.ptr + 40, 32), '\\\\\.\\', '')
+            Number := RegExReplace(Name, ".*(\d+)$", "$1")
+			A_DPI := dpiX
+			; A_DPI := (dpiX = dpiy) ? A_DPI := dpiX : A_DPI := wDPI
+            Return  { 
+				Handle   : hMonitor
+                , Name 		: Name
+                , Number 	: Number
+                , Left 		: L  := NumGet(MONITORINFOEX,  4, "int")
+                , Top 		: T  := NumGet(MONITORINFOEX,  8, "int")
+                , Right 	: R  := NumGet(MONITORINFOEX, 12, "int")
+                , Bottom 	: B  := NumGet(MONITORINFOEX, 16, "int")
+                , WALeft 	: WL := NumGet(MONITORINFOEX, 20, "int")
+                , WATop 	: WT := NumGet(MONITORINFOEX, 24, "int")
+                , WARight 	: WR := NumGet(MONITORINFOEX, 28, "int")
+                , WABottom 	: WB := NumGet(MONITORINFOEX, 32, "int")
+                , Width 	: Width  := R - L
+                , Height 	: Height := B - T
+                , WAWidth 	: WR - WL
+                , WAHeight 	: WB - WT
+                , Primary  	: NumGet(MONITORINFOEX, 36, "uint")
+                , x 		: dpiX
+				, A_DPI 	: dpiX
+				, DPI 		: A_DPI
+                , y 		: dpiY
+                , winDPI 	: wDPI 
+            }
+        }
+        throw Error("GetMonitorInfo: " A_LastError, -1)
+    }
     /**
      * Returns the DPI for a certain monitor
      * @param {Integer} hMonitor Handle to the monitor (can be gotten with GetMonitorHandles)

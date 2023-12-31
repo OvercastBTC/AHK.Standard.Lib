@@ -1,5 +1,4 @@
-; No dependencies ;? origional
-#Include <Utils\Choose>
+; No dependencies
 
 _ArrayToString(this, char := ", ") {
 	for index, value in this {
@@ -23,38 +22,37 @@ _ArrayHasValue(this, valueToFind) {
 }
 Array.Prototype.DefineProp("HasValue", { Call: _ArrayHasValue })
 
-; // Convert from MAP to Array
-; TODO Validate changes from MAP to Array
+; TODO Convert from MAP to Array
 
 /**
- * By default, you can set the same value to an array multiple times.
+ * By default, you can set the same key to a map multiple times.
  * Naturally, you'll be able to reference only one of them, which is likely not the behavior you want.
- * This function will throw an error if you try to set a value that already exists in the array.
- * @param arrayObj ***Array*** to set the index-value pair into
- * @param each ***index*** (or A_Index)
+ * This function will throw an error if you try to set a key that already exists in the map.
+ * @param mapObj ***Map*** to set the key-value pair into
+ * @param key ***String***
  * @param value ***Any***
  */
-SafePush(arrayObj, value) {
+arraySafeSet(arrayObj, each, value) {
 	if !arrayObj.Has(value) {
 		arrayObj.Push(value)
 		; return
 	}
-	; throw IndexError("Array already has key", -1, key)
+	; throw IndexError("Map already has key", -1, key)
 }
-Array.Prototype.DefineProp("SafePush", {Call: SafePush})
+Array.Prototype.DefineProp("SafeSet", {Call: arraySafeSet})
 
 /**
- * A version of SafePush that you can just pass another array object into to set everything in it.
- * Will still throw an error for every key that already exists in the array.
- * @param arrayObj ***Array*** the initial array
- * @param arrayToPush ***Array*** the array to set into the initial array
+ * A version of SafeSet that you can just pass another map object into to set everything in it.
+ * Will still throw an error for every key that already exists in the map.
+ * @param mapObj ***Map*** the initial map
+ * @param mapToSet ***Map*** the map to set into the initial map
  */
-SafePushArray(arrayObj, arrayToPush) {
+SafeSetArray(arrayObj, arrayToPush) {
 	for each, value in arrayToPush {
-		SafePush(arrayObj, value)
+		SafeSet(arrayObj, each, value)
 	}
 }
-Array.Prototype.DefineProp("SafePushArray", {Call: SafePushArray})
+Array.Prototype.DefineProp("SafeSetArray", {Call: SafeSetArray})
 
 ; TODO figure out how to reverse an array, or sort?
 aReverse(arrayObj) {
@@ -78,21 +76,19 @@ Array.Prototype.DefineProp("Reverse", {Call: aReverse})
 ;     }
 ; }
 
-; TODO Validate this works. Was previously used for a MAP
-
-_ChooseArray(arrayObj, valueName) {
-	if arrayObj.Has(valueName){
-		return arrayObj[valueName]
+_ChooseArray(this, keyName) {
+	if this.Has(keyName){
+		return this[keyName]
 	}
 	options := []
-	for each, value in arrayObj {
-		if InStr(value, valueName){
-			options.Push(value)
+	for key, _ in this {
+		if InStr(key, keyName){
+			options.Push(key)
 		}
 	}
 	chosen := Choose(options*)
 	if chosen{
-		return arrayObj[chosen]
+		return this[chosen]
 	}
 	return ""
 }

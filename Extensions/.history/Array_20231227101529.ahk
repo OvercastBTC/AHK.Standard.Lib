@@ -34,27 +34,27 @@ Array.Prototype.DefineProp("HasValue", { Call: _ArrayHasValue })
  * @param each ***index*** (or A_Index)
  * @param value ***Any***
  */
-SafePush(arrayObj, value) {
+arraySafeSet(arrayObj, each, value) {
 	if !arrayObj.Has(value) {
 		arrayObj.Push(value)
 		; return
 	}
 	; throw IndexError("Array already has key", -1, key)
 }
-Array.Prototype.DefineProp("SafePush", {Call: SafePush})
+Array.Prototype.DefineProp("SafeSet", {Call: arraySafeSet})
 
 /**
- * A version of SafePush that you can just pass another array object into to set everything in it.
+ * A version of SafeSet that you can just pass another array object into to set everything in it.
  * Will still throw an error for every key that already exists in the array.
  * @param arrayObj ***Array*** the initial array
  * @param arrayToPush ***Array*** the array to set into the initial array
  */
-SafePushArray(arrayObj, arrayToPush) {
+SafeSetArray(arrayObj, arrayToPush) {
 	for each, value in arrayToPush {
-		SafePush(arrayObj, value)
+		SafeSet(arrayObj, each, value)
 	}
 }
-Array.Prototype.DefineProp("SafePushArray", {Call: SafePushArray})
+Array.Prototype.DefineProp("SafeSetArray", {Call: SafeSetArray})
 
 ; TODO figure out how to reverse an array, or sort?
 aReverse(arrayObj) {

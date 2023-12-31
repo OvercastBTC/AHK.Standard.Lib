@@ -228,7 +228,8 @@ EWD_MoveWindow(*)
 @function 
 @function 
 ************************************************************************/
-^+v::
+; ^+v::
+^+i::
 {
 	A_Clipboard := Trim(A_Clipboard)
 	recordsplit := StrSplit(A_Clipboard,"-")		; Split the index number from the record number.

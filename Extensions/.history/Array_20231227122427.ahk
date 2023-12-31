@@ -34,7 +34,7 @@ Array.Prototype.DefineProp("HasValue", { Call: _ArrayHasValue })
  * @param each ***index*** (or A_Index)
  * @param value ***Any***
  */
-SafePush(arrayObj, value) {
+SafePush(arrayObj, each, value) {
 	if !arrayObj.Has(value) {
 		arrayObj.Push(value)
 		; return
@@ -51,7 +51,7 @@ Array.Prototype.DefineProp("SafePush", {Call: SafePush})
  */
 SafePushArray(arrayObj, arrayToPush) {
 	for each, value in arrayToPush {
-		SafePush(arrayObj, value)
+		SafePush(arrayObj, each, value)
 	}
 }
 Array.Prototype.DefineProp("SafePushArray", {Call: SafePushArray})

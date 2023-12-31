@@ -11,11 +11,10 @@
 SafeSet(mapObj, key, value) {
 	if !mapObj.Has(key) {
 		mapObj.Set(key, value)
-		; return ;? disabled => dunno why a return is necessary
+		; return
 	}
-	; throw IndexError("Map already has key", -1, key) ;? disabled => causes thread to stop
+	; throw IndexError("Map already has key", -1, key)
 }
-; Map.Prototype.DefineProp("SafeSet", {Call: SafeSet})
 Map.Prototype.DefineProp("SafeSet", {Call: SafeSet})
 
 /**
@@ -26,7 +25,6 @@ Map.Prototype.DefineProp("SafeSet", {Call: SafeSet})
  */
 SafeSetMap(mapObj, mapToSet) {
 	for key, value in mapToSet {
-		; SafeSet(mapObj, key, value)
 		SafeSet(mapObj, key, value)
 	}
 }
@@ -53,52 +51,17 @@ Map.Prototype.DefineProp("Reverse", {Call: Reverse})
 ;     }
 ; }
 
-_ChooseMap(mapObj, keyName) {
-	if mapObj.Has(keyName){
-		return mapObj[keyName]
-	}
+_ChooseMap(this, keyName) {
+	if this.Has(keyName)
+		return this[keyName]
 	options := []
-	for key, _ in mapObj {
-		if InStr(key, keyName){
+	for key, _ in this {
+		if InStr(key, keyName)
 			options.Push(key)
-		}
 	}
 	chosen := Choose(options*)
-	if chosen{
-		return mapObj[chosen]
-	}
+	if chosen
+		return this[chosen]
 	return ""
 }
 Map.Prototype.DefineProp("Choose", {Call: _ChooseMap})
-
-_MapToString(this, char := ", ") {
-	str := ''
-	for key, value in this {
-		; if key = this.Length {
-		; 	str .= value
-		; 	break
-		; }
-		str .= key ' : ' value char
-	}
-	return str
-}
-Map.Prototype.DefineProp("ToString", { Call: _MapToString })
-
-_MapHasValue(this, valueToFind) {
-	for key, value in this {
-		if (value = valueToFind){
-			return true
-		}
-	}
-	return false
-}
-Map.Prototype.DefineProp("HasValue", { Call: _MapHasValue })
-_MapHaskey(this, keyToFind) {
-	for key, value in this {
-		if (key = keyToFind){
-			return true
-		}
-	}
-	return false
-}
-Map.Prototype.DefineProp("HasKey", { Call: _MapHaskey })

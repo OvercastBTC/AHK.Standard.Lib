@@ -33,8 +33,9 @@ ClipSend(toSend, endChar := "", isClipReverted := true, untilRevert := 300) {
 	 * I often need a space after so I add a space by default,
 	 * you can change what it is in the second parameter
 	 */
-	ClipWait(1)	;...so we can make sure we filled the clipboard with what we want before we send it
-	Send("{Shift Down}{Insert}{Shift Up}")	;We send it. Not ^v because this variant is more consistent
+	SetTimer(()=>Send("{Shift Down}{Insert}{Shift Up}"),-1000)
+	; ClipWait(1)	;...so we can make sure we filled the clipboard with what we want before we send it
+	; Send("{Shift Down}{Insert}{Shift Up}")	;We send it. Not ^v because this variant is more consistent
 
 	if isClipReverted
 		SetTimer(() => A_Clipboard := prevClip, -untilRevert)

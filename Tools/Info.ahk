@@ -1,6 +1,4 @@
-#Include <Extensions\Array>
-#Include <Extensions\Gui>
-#Include <Extensions\String>
+#Include <Includes\Includes_Extensions>
 
 
 class Infos {

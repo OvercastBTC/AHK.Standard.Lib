@@ -1,13 +1,13 @@
 ﻿; Runner Includes
 
 #Include <Environment>
+#Include <Paths>
 #Include <Links>
 #Include <App\Spotify>
 #Include <App\Davinci>
 #Include <Extensions\String>
 #Include <Utils\ClipSend>
 #Include <Utils\Win>
-#Include <Paths>
 #Include <Utils\Unicode>
 #Include <Abstractions\Script>
 #Include <Abstractions\Text>
@@ -35,4 +35,10 @@
 #Include <Utils\GetFilesSortedByDate>
 #Include <Common\Misc Scripts.V2>
 #Include <Scr\FM_Updater>
+#Include <Includes\Includes_Extensions>
+; ---------------------------------------------------------------------------
+#Include <System\DPI>
+; ---------------------------------------------------------------------------
+#Include <EnumAllMonitorsDPI.v2>
+#Include <GetNearestMonitorInfo().v2>
 ; ---------------------------------------------------------------------------

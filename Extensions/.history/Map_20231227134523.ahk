@@ -72,7 +72,6 @@ _ChooseMap(mapObj, keyName) {
 Map.Prototype.DefineProp("Choose", {Call: _ChooseMap})
 
 _MapToString(this, char := ", ") {
-	str := ''
 	for key, value in this {
 		; if key = this.Length {
 		; 	str .= value

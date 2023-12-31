@@ -1,19 +1,10 @@
 ;No dependencies
 
-; DarkMode(guiObj) {
-DarkMode(guiObj, BackColor := '') {
-	; guiObj.BackColor := "171717" ;? original
+DarkMode(guiObj) {
+	; guiObj.BackColor := "171717"
 	; guiObj.BackColor := "255"
 	; guiObj.BackColor := "0x450095"
-	; guiObj.BackColor := "0xA2AAAD"
-	if BackColor = ''{
-		; guiObj.BackColor := "171717" ;? original
-		; guiObj.BackColor := "255"
-		; guiObj.BackColor := "0x450095"
-		guiObj.BackColor := "0xA2AAAD"
-	} else {
-		guiObj.BackColor := BackColor
-	}
+	guiObj.BackColor := "0xA2AAAD"
 	return guiObj
 }
 Gui.Prototype.DefineProp("DarkMode", {Call: DarkMode})

@@ -70,35 +70,3 @@ _ChooseMap(mapObj, keyName) {
 	return ""
 }
 Map.Prototype.DefineProp("Choose", {Call: _ChooseMap})
-
-_MapToString(this, char := ", ") {
-	str := ''
-	for key, value in this {
-		; if key = this.Length {
-		; 	str .= value
-		; 	break
-		; }
-		str .= key ' : ' value char
-	}
-	return str
-}
-Map.Prototype.DefineProp("ToString", { Call: _MapToString })
-
-_MapHasValue(this, valueToFind) {
-	for key, value in this {
-		if (value = valueToFind){
-			return true
-		}
-	}
-	return false
-}
-Map.Prototype.DefineProp("HasValue", { Call: _MapHasValue })
-_MapHaskey(this, keyToFind) {
-	for key, value in this {
-		if (key = keyToFind){
-			return true
-		}
-	}
-	return false
-}
-Map.Prototype.DefineProp("HasKey", { Call: _MapHaskey })

@@ -1130,10 +1130,9 @@ Class RichEdit {
       ; Get the line containing the caret, it's position in this line, the total amount of lines, the absulute caret
       ; position and the total amount of characters.
       ; EM_GETSEL = 0xB0, EM_LINEFROMCHAR = 0xC9, EM_LINEINDEX = 0xBB, EM_GETLINECOUNT = 0xBA
-      EM_GETSEL := 176
       Stats := {}
       SB := Buffer(A_PtrSize, 0)
-      SendMessage(EM_GETSEL, SB.Ptr, 0, This.Hwnd)
+      SendMessage(0x00B0, SB.Ptr, 0, This.Hwnd)
       LI := This.GetLineIndex(-1)
       Stats.LinePos := NumGet(SB, "Ptr") - LI + 1
       Stats.Line := SendMessage(0x00C9, -1, 0, This.HWND) + 1
